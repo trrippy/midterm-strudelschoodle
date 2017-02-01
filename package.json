@@ -1,0 +1,32 @@
+{
+  "name": "midterm-schoodle",
+  "version": "1.0.0",
+  "description": "### We got a lot of things to do, so in no particular order:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "./node_modules/.bin/nodemon --watch server -e js server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trrippy/midterm-schoodle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trrippy/midterm-schoodle/issues"
+  },
+  "homepage": "https://github.com/trrippy/midterm-schoodle#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "knex": "^0.12.6",
+    "pg": "^6.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
