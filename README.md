@@ -1,53 +1,23 @@
-# This is the midterm project for LHL labs
+### Option 6: Schoodle
 
-### We got a lot of things to do, so in no particular order:
+[Doodle](https://doodle.com) is great for scheduling events within a group. Your job is to create a simpler, more modern version of it.
 
- - Role distribution (General guidelines)
-    - Front End Design
-    - Server Level
-    - Databases
+#### Requirements:
 
- - File organization
+*   visitors can create an event proposal in much [the same way](http://doodle.com/create) as Doodle, by specifying:
+    *   event title and description
+    *   their own name and email
+*   organizers can then send the unique URL to possible attendees via their own communication workflow (email, Slack, Messenger, etc.)
+*   attendees visit the unique URL and:
+    *   specify their name and email
+    *   specify their availability (yes/no only) for each possible time slot
+    *   view all responses including their own
+    *   modify their response
+*   the unique URL should be secret and thus not use a simple auto-incrementing integer but instead a larger ID that is harder to guess (much like how secret gists work on GitHub)
+*   note: this app does not follow the typical user authentication process: users don't need to register or log in and the only way to access the Schoodles is via links
 
- - Brainstorming
-    - Functionality first!
-    - I think **Pathways between server and html using ReST convention (routes)** EJS here
-    - Database design (ERD), drawn up, mongodb? or should be move to sql?
-    - Website design UX
+#### Extensions:
 
- - Questions to ask
-    - What is the data you can accees or acquire?
-    - Can I correlate that data to something else (relationship between data)
-    - How can you pivot (the presentation for example) that data to add value
-
- - Universal values:
-    1. Look good
-    2. Feel good
-    3. Save time
-    4. Save money
-
- - 3 Absolutely key things you gotta do
-    1. Pick features/stuff you will build (only build it if you will demo it, you can't bulid everything)
-      - User stories (motivation)
-        - "as  (a user), I want to (Do something) because (reason)"
-      - User scenarios (behavior)
-        - "given (something I do on the website) when (i do something) then (response)"
-
-    2. ERD
-      - Look over user stories, look at nouns (nouns = tables)
-
-    3. Server framework (node and express)
-      - Routes (big mistake)
-        - Verbs
-        - ReSTful convention
-        - GET PUT POST DELETE
-        - Params in URLS?
-
-
-
-
-
-
-
-
-
+*   email notify the event creator every time they receive a new response, with details about what was selected
+*   ability to invite participants when creating the event (much like step 4 when creating an event in Doodle)
+*   user authentication (not needed for core functionality)
