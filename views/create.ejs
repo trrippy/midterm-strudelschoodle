@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Home Page</title>
+
+    <link rel='stylesheet' href='/vendor/normalize-4.1.1.css' type='text/css' />
+    <link rel='stylesheet' href='/vendor/border-box.css' type='text/css' />
+    <link rel='stylesheet' href='/styles/layout.css' type='text/css' />
+    <link rel='stylesheet' href='/styles/bootstrap.min.css' type='text/css' />
+
+    <script type='text/javascript' src='/vendor/jquery-3.0.0.js'></script>
+    <script type='text/javascript' src='/scripts/app.js'></script>
+  </head>
+
+  <body>
+    <% include partials/_header %>
+
+    <main>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-1'>
+            <span class='step img-circle'>1</span>
+          </div>
+          <div class='col-md-1'>
+            <span class='step img-circle'>2</span>
+          </div>
+          <div class='col-md-1'>
+            <span class='step img-circle'>3</span>
+          </div>
+          <div class='col-md-1'>
+            <span class='step img-circle'>4</span>
+          </div>
+          <div class='col-md-8'>&nbsp;</div>
+        </div>
+
+        <div class='row'>
+          <div class='col-md-3'>&nbsp;</div>
+          <div class='col-md-6 form-block'>
+            <h3>General information</h3>
+            <form method='post' action='/create'>
+              <div style='display: block'>
+                <div class='form-group'>
+                  <label for='title'>Title</label>
+                  <input type='text' class='form-control' id='title'>
+                </div>
+                <div class='form-group'>
+                  <label for='location'>Location</label>
+                  <input type='text' class='form-control' id='location'>
+                </div>
+                <div class='form-group'>
+                  <label for='description'>Description</label>
+                  <input type='text' class='form-control' id='description'>
+                </div>
+                <div class='form-group'>
+                  <label for='name'>Organizer Name</label>
+                  <input type='text' class='form-control' id='name'>
+                </div>
+                <div class='form-group'>
+                  <label for='email'>Email</label>
+                  <input type='email' class='form-control' id='email'>
+                </div>
+              </div>
+
+              <div style="display: none">
+                <h3>Date Options</h3>
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <input type="file" id="exampleInputFile">
+                  <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Check me out
+                  </label>
+                </div>
+              </div>
+              <a href='#' class='btn btn-default'>Back</a>
+              <a href='#' class='btn btn-default'>Next</a>
+            </form>
+          </div>
+          <div class='col-md-3'>&nbsp;</div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
