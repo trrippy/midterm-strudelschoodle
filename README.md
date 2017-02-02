@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Node Skeleton
 
 ## Project Setup
@@ -52,4 +51,3 @@
 *   email notify the event creator every time they receive a new response, with details about what was selected
 *   ability to invite participants when creating the event (much like step 4 when creating an event in Doodle)
 *   user authentication (not needed for core functionality)
->>>>>>> 7381367bee4a5bb70efe410fd469a94734df29dc
