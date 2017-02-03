@@ -1,17 +1,28 @@
 $(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });
+  let dates;
+
+
+
+  function sendDates() {
+    $.ajax({
+      method: "post",
+      url: "/test",
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({dates: dates})
+    }).then((result) => {
+      console.log(result.url);
+    });
+  }
 
   flatpickr(".flatpickr", {
     inline: true,
     mode: "multiple",
-    static: true
+    static: true,
+    onChange: function(selectedDates, dateStr, instance) {
+      dates = selectedDates;
+      sendDates();
+    }
   });
 
 
@@ -19,6 +30,9 @@ $(() => {
       var $target = $(e.target);
       if ($target.parent().hasClass('disabled')) {
         return false;
+      }
+      if($target.attr("id") == "lnk-step3") {
+        console.log('done!')
       }
   });
 

@@ -47,3 +47,16 @@
   background: url(../images/line.png) left center no-repeat;
 }
 
+.step.nav-tabs>li,
+.step.nav-tabs>li>a
+.step.nav-tabs>li.active,
+.step.nav-tabs>li.active>a,
+.nav-tabs>li>a {
+  border: 0;
+  display: inline;
+  float: none;
+  margin: 0;
+  padding: 0;
+
+}
+
