@@ -1,0 +1,74 @@
+.steps-list {
+  padding-bottom: 10px;
+}
+
+.step {
+  background: url(../images/line.png) left center no-repeat;
+  display: flex;
+  justify-content: space-between;
+}
+
+.step-icon {
+  background-color: #fff;
+  border: solid 1px #666;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.9em;
+  height: 55px;
+  text-align: center;
+  width: 55px;
+}
+
+.step-icon.active {
+  border: solid 1px #337ab7;
+}
+
+.step-icon.active .glyphicon {
+  color: #337ab7;
+}
+
+.step-icon .glyphicon {
+  color: #666;
+  line-height: 50px;
+  font-size: 1.1em;
+}
+
+.form-block {
+  margin-bottom: 10px;
+}
+
+.form-block .step-title {
+  margin-bottom: 20px;
+}
+
+.form-block label {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.flatpickr-input {
+  float: right;
+  padding: 5px;
+  width: 200px;
+}
+
+.form-block .flatpickr-calendar.inline {
+  margin-bottom: 20px;
+  position: static;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+body {
+  background-color: #EEE;
+}
+
+body h1 {
+  color: #244751;
+}
