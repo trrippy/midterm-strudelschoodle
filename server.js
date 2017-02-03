@@ -20,8 +20,6 @@ const usersRoutes = require("./routes/routes.js");
 const queries = require('./db/queries.js');
 const dbInsert = require('./db/db-insert');
 
-// unique url identifyer
-const uuid        = require('./public/scripts/uuid.js');
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -44,7 +42,11 @@ app.use(express.static("public"));
 //Routes
 app.use("/", usersRoutes(knex));
 
-// dbInsert.createEvent('', 'my house');
+const title = 'Parteh';
+const loc = 'My house';
+const desc = 'Gun B fun';
+const arrayOfTimes = ['2017-02-03T17:00:00+00:00','2017-02-03T19:00:00+00:00']
+dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

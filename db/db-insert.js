@@ -4,29 +4,39 @@ const ENV         = process.env.ENV || "development";
 const knexConfig  = require("../knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 
+const uuid        = require('./uuid');
+
 module.exports = {
   // given 1) event title, 2)location, 3) description, 4)organizer, 5)email 6)timeslots
   createEvent: (eventTitle, loc, desc, arrOfTimeslots) => {
-
-    knex('events')
-    .insert({
-        // id: 6, // this will be changed later, auto increment is making it conflict and throw err
+    let eventId = knex
+    .insert([{
         title: eventTitle,
         location: loc,
         description: desc,
-        unique_url: 'newurl' //this will be uuid()
-      })
+        unique_url: uuid()
+      }], 'id')
+    .into('events')
     .then((id) => {
-      console.log(id);
       arrOfTimeslots.forEach((item) => {
-        knex('timeslots')
-        .insert({
-          // id: 6,
-          event_id: id,
+        knex
+        .insert([{
+          event_id: id[0],
           start_time: item
+        }])
+        .into('timeslots')
+        .then(results => {
+          return results;
+        })
+        .catch(err => {
+          console.log(err);
         })
       })
     })
+  },
+
+  createParticipant: (name, email, uuid, arrOfTimeslots) => {
+
   }
 }
 
