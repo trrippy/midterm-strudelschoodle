@@ -44,7 +44,7 @@ app.use(express.static("public"));
 //Routes
 app.use("/", usersRoutes(knex));
 
-// dbInsert.createEvent('BDAY PARTY', 'my house');
+// dbInsert.createEvent('', 'my house');
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
