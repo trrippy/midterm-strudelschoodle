@@ -17,7 +17,8 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
-const queries = require('./db/queries.js')
+const queries = require('./db/queries.js');
+const dbInsert = require('./db/db-insert');
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -45,15 +46,8 @@ app.use('/api', usersRoutes(knex));
 app.get("/", (req, res) => {
   res.render("index");
 });
-console.log(queries);
-console.log(queries.getEventInfo());
-// console.log(knex
-//       .select("*")
-//       .from("events")
-//       .then((results) => {
-//         console.log(results);
-//         return results;
-//     }));
+
+// dbInsert.createEvent('BDAY PARTY', 'my house');
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

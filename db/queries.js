@@ -17,13 +17,33 @@ module.exports = {
     // 1. lets get event description
     // 2. lets get timeslots
 
-  getEventInfo: () => {
-    knex
+  getAllEventsInfo: () => {
+    return knex
       .select("*")
       .from("events")
       .then((results) => {
-        console.log(results);
         return results;
     })
+  },
+  // Return timeslots given an event id
+  getTimeslotsForEvent: (uuid) => {
+    return knex('timeslots')
+      .join('events', 'timeslots.event_id', '=', 'events.id')
+      .select('start_time')
+      .where('unique_url', '=', uuid)
+      .then ((results) => {
+        return results;
+    })
+  },
+  // Returns participants given an event id
+  getParticipantsForEvent: (uuid) => {
+    return knex('participants')
+    .join('events', 'participants.event_id', '=', 'events.id')
+    .select('participants.id', 'name', 'email', 'admin')
+    .where('unique_url', '=', uuid)
+    .then ((results) => {
+      return results;
+    })
   }
+  // TODO: a list
 }
