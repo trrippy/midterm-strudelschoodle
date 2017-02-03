@@ -1,10 +1,26 @@
+@import 'variables';
+
+.steps-list {
+  padding-bottom: $indent;
+}
+
+.step-icon {
+  background: url(../images/line.png) left center no-repeat;;
+}
+
 .step {
-  background-color: blue;
+  background-color: #fff;
+  border: solid 1px #666;
   color: #fff;
   display: inline-block;
-  font-size: 1.6em;
-  height: 35px;
-  padding-top: 2px;
+  font-size: 1.9em;
+  height: 55px;
+  padding-top: 6px;
   text-align: center;
-  width: 35px;
+  width: 55px;
+}
+
+.fa {
+  color: #666;
+  font-size: 1.5em;
 }

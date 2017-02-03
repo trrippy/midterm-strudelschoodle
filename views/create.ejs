@@ -7,7 +7,9 @@
     <link rel='stylesheet' href='/vendor/border-box.css' type='text/css' />
     <link rel='stylesheet' href='/styles/layout.css' type='text/css' />
     <link rel='stylesheet' href='/styles/bootstrap.min.css' type='text/css' />
-
+    <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+    <script src="https://unpkg.com/flatpickr"></script>
+    <script src="https://use.fontawesome.com/d89c4167b2.js"></script>
     <script type='text/javascript' src='/vendor/jquery-3.0.0.js'></script>
     <script type='text/javascript' src='/scripts/app.js'></script>
   </head>
@@ -17,28 +19,38 @@
 
     <main>
       <div class='container'>
-        <div class='row'>
-          <div class='col-md-1'>
-            <span class='step img-circle'>1</span>
+        <div class='row steps-list'>
+          <div class='col-md-4'>&nbsp;</div>
+          <div class='col-md-1 text-center step-icon'>
+            <span class='step img-circle'>
+              <i class="fa fa-file-o" aria-hidden="true"></i>
+            </span>
           </div>
-          <div class='col-md-1'>
-            <span class='step img-circle'>2</span>
+          <div class='col-md-1 text-center step-icon'>
+            <span class='step img-circle'>
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
           </div>
-          <div class='col-md-1'>
-            <span class='step img-circle'>3</span>
+          <div class='col-md-1 text-center step-icon'>
+            <span class='step img-circle'>
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </span>
           </div>
-          <div class='col-md-1'>
-            <span class='step img-circle'>4</span>
+          <div class='col-md-1 text-center step-icon'>
+            <span class='step img-circle'>
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            </span>
           </div>
-          <div class='col-md-8'>&nbsp;</div>
+          <div class='col-md-4'>&nbsp;</div>
         </div>
 
         <div class='row'>
           <div class='col-md-3'>&nbsp;</div>
-          <div class='col-md-6 form-block'>
-            <h3>General information</h3>
-            <form method='post' action='/create'>
-              <div style='display: block'>
+          <div class='col-md-6'>
+
+            <form method='post' action='/create' class='create-form'>
+              <div class='form-block show'>
+                <h3 class='step-title'>General information</h3>
                 <div class='form-group'>
                   <label for='title'>Title</label>
                   <input type='text' class='form-control' id='title'>
@@ -49,7 +61,7 @@
                 </div>
                 <div class='form-group'>
                   <label for='description'>Description</label>
-                  <input type='text' class='form-control' id='description'>
+                  <textarea class="form-control" rows="2" id='description'></textarea>
                 </div>
                 <div class='form-group'>
                   <label for='name'>Organizer Name</label>
@@ -61,21 +73,23 @@
                 </div>
               </div>
 
-              <div style="display: none">
-                <h3>Date Options</h3>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-                  <p class="help-block">Example block-level help text here.</p>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
+              <div class='form-block hide'>
+                <h3 class='step-title'>Date Options</h3>
+                <div class='form-group clearfix'>
+                    <input class="flatpickr" type="text" data-input>
                 </div>
               </div>
-              <a href='#' class='btn btn-default'>Back</a>
-              <a href='#' class='btn btn-default'>Next</a>
+
+              <div class='form-block hide'>
+                <h3 class='step-title'>Time options</h3>
+
+              </div>
+
+              <div class='pag'>
+                <a href='#' class='btn btn-default back'>Back</a>
+                <a href='#' class='btn btn-default next'>Next</a>
+              </div>
+
             </form>
           </div>
           <div class='col-md-3'>&nbsp;</div>
