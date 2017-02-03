@@ -5,7 +5,7 @@
 }
 
 .step {
-  background: url(../images/line.png) left center no-repeat;
+  /*background: url(../images/line.png) left center no-repeat;*/
   display: flex;
   justify-content: space-between;
 }
@@ -35,4 +35,15 @@
   }
 }
 
+.step.nav-tabs,
+.step.nav-tabs>li.active>a,
+.step.nav-tabs>li.active>a:focus,
+.step.nav-tabs>li.active>a:hover {
+  border: 0;
+}
+
+.step.nav-tabs>li,
+.step.nav-tabs>li.active {
+  background: url(../images/line.png) left center no-repeat;
+}
 
