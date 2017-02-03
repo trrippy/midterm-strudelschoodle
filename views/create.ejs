@@ -9,7 +9,6 @@
     <link rel='stylesheet' href='/styles/bootstrap.min.css' type='text/css' />
     <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
     <script src="https://unpkg.com/flatpickr"></script>
-    <script src="https://use.fontawesome.com/d89c4167b2.js"></script>
     <script type='text/javascript' src='/vendor/jquery-3.0.0.js'></script>
     <script type='text/javascript' src='/scripts/app.js'></script>
   </head>
@@ -21,25 +20,25 @@
       <div class='container'>
         <div class='row steps-list'>
           <div class='col-md-4'>&nbsp;</div>
-          <div class='col-md-1 text-center step-icon'>
-            <span class='step img-circle'>
-              <i class="fa fa-file-o" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div class='col-md-1 text-center step-icon'>
-            <span class='step img-circle'>
-              <i class="fa fa-calendar" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div class='col-md-1 text-center step-icon'>
-            <span class='step img-circle'>
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div class='col-md-1 text-center step-icon'>
-            <span class='step img-circle'>
-              <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            </span>
+          <div class='col-md-4'>
+            <div class='text-center step'>
+              <span class='step-icon img-circle active'>
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              </span>
+
+              <span class='step-icon img-circle'>
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+              </span>
+
+              <span class='step-icon img-circle'>
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+              </span>
+
+              <span class='step-icon img-circle'>
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </span>
+            </div>
+
           </div>
           <div class='col-md-4'>&nbsp;</div>
         </div>
@@ -89,7 +88,6 @@
                 <a href='#' class='btn btn-default back'>Back</a>
                 <a href='#' class='btn btn-default next'>Next</a>
               </div>
-
             </form>
           </div>
           <div class='col-md-3'>&nbsp;</div>
