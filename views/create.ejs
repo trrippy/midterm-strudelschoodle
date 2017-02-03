@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
     <script src="https://unpkg.com/flatpickr"></script>
     <script type='text/javascript' src='/vendor/jquery-3.0.0.js'></script>
+    <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='/scripts/app.js'></script>
   </head>
 
@@ -21,24 +22,39 @@
         <div class='row steps-list'>
           <div class='col-md-4'>&nbsp;</div>
           <div class='col-md-4'>
-            <div class='text-center step'>
-              <span class='step-icon img-circle active'>
-                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-              </span>
+            <ul class='text-center step nav nav-tabs' role='tablist'>
+              <li role="presentation" class="active">
+                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab">
+                  <span class='step-icon img-circle active'>
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
 
-              <span class='step-icon img-circle'>
-                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-              </span>
+              <li role="presentation" class="disabled">
+                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab">
+                  <span class='step-icon img-circle'>
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
 
-              <span class='step-icon img-circle'>
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-              </span>
+              <li role="presentation" class="disabled">
+                <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab">
+                  <span class='step-icon img-circle'>
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
 
-              <span class='step-icon img-circle'>
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </span>
-            </div>
-
+              <li role="presentation" class="disabled">
+                <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab">
+                  <span class='step-icon img-circle'>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
+            </ul>
           </div>
           <div class='col-md-4'>&nbsp;</div>
         </div>
@@ -48,45 +64,63 @@
           <div class='col-md-6'>
 
             <form method='post' action='/create' class='create-form'>
-              <div class='form-block show'>
-                <h3 class='step-title'>General information</h3>
-                <div class='form-group'>
-                  <label for='title'>Title</label>
-                  <input type='text' class='form-control' id='title'>
-                </div>
-                <div class='form-group'>
-                  <label for='location'>Location</label>
-                  <input type='text' class='form-control' id='location'>
-                </div>
-                <div class='form-group'>
-                  <label for='description'>Description</label>
-                  <textarea class="form-control" rows="2" id='description'></textarea>
-                </div>
-                <div class='form-group'>
-                  <label for='name'>Organizer Name</label>
-                  <input type='text' class='form-control' id='name'>
-                </div>
-                <div class='form-group'>
-                  <label for='email'>Email</label>
-                  <input type='email' class='form-control' id='email'>
-                </div>
-              </div>
+              <div class='tab-content'>
+                <div class='form-block tab-pane active' role='tabpanel' id='step1'>
+                  <h3 class='step-title'>General information</h3>
+                  <div class='form-group'>
+                    <label for='title'>Title</label>
+                    <input type='text' class='form-control' id='title'>
+                  </div>
+                  <div class='form-group'>
+                    <label for='location'>Location</label>
+                    <input type='text' class='form-control' id='location'>
+                  </div>
+                  <div class='form-group'>
+                    <label for='description'>Description</label>
+                    <textarea class="form-control" rows="2" id='description'></textarea>
+                  </div>
+                  <div class='form-group'>
+                    <label for='name'>Organizer Name</label>
+                    <input type='text' class='form-control' id='name'>
+                  </div>
+                  <div class='form-group'>
+                    <label for='email'>Email</label>
+                    <input type='email' class='form-control' id='email'>
+                  </div>
 
-              <div class='form-block hide'>
-                <h3 class='step-title'>Date Options</h3>
-                <div class='form-group clearfix'>
-                    <input class="flatpickr" type="text" data-input>
+                  <div class='pag'>
+                    <a href='#' class='btn btn-default next'>Next</a>
+                  </div>
                 </div>
-              </div>
 
-              <div class='form-block hide'>
-                <h3 class='step-title'>Time options</h3>
+                <div class='form-block tab-pane' role='tabpanel' id='step2'>
+                  <h3 class='step-title'>Date Options</h3>
+                  <div class='form-group clearfix'>
+                      <input class="flatpickr" type="text" data-input>
+                  </div>
 
-              </div>
+                  <div class='pag'>
+                    <a href='#' class='btn btn-default back'>Back</a>
+                    <a href='#' class='btn btn-default next'>Next</a>
+                  </div>
+                </div>
 
-              <div class='pag'>
-                <a href='#' class='btn btn-default back'>Back</a>
-                <a href='#' class='btn btn-default next'>Next</a>
+                <div class='form-block tab-pane' role='tabpanel' id='step3'>
+                  <h3 class='step-title'>Time options</h3>
+
+                  <div class='pag'>
+                    <a href='#' class='btn btn-default back'>Back</a>
+                    <a href='#' class='btn btn-default next'>Next</a>
+                  </div>
+                </div>
+
+                <div class='form-block tab-pane' role='tabpanel' id='step4'>
+                  <h3 class='step-title'>Event URL</h3>
+
+                  <div class='pag'>
+                    <a href='#' class='btn btn-default back'>Back</a>
+                  </div>
+                </div>
               </div>
             </form>
           </div>

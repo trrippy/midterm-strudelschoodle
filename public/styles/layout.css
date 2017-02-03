@@ -3,7 +3,7 @@
 }
 
 .step {
-  background: url(../images/line.png) left center no-repeat;
+  /*background: url(../images/line.png) left center no-repeat;*/
   display: flex;
   justify-content: space-between;
 }
@@ -33,6 +33,18 @@
   font-size: 1.1em;
 }
 
+.step.nav-tabs,
+.step.nav-tabs > li.active > a,
+.step.nav-tabs > li.active > a:focus,
+.step.nav-tabs > li.active > a:hover {
+  border: 0;
+}
+
+.step.nav-tabs > li,
+.step.nav-tabs > li.active {
+  background: url(../images/line.png) left center no-repeat;
+}
+
 .form-block {
   margin-bottom: 10px;
 }
@@ -57,18 +69,15 @@
   position: static;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
 body {
   background-color: #EEE;
 }
 
 body h1 {
   color: #244751;
+}
+
+.navbar .navbar-brand {
+  height: auto;
+  padding: 10px 37px;
 }
