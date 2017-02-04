@@ -79,6 +79,11 @@
   float: none;
 }
 
+.flatpickr-month,
+.flatpickr-innerContainer {
+  display: none;
+}
+
 body {
   background-color: #EEE;
 }

@@ -41,6 +41,7 @@ $(() => {
 
       // TODO: sort the dates if that seems necessary
       dates.forEach(function(el) {
+
         let time_value = times[el];
         if(time_value === undefined) {
           time_value = '';
@@ -52,14 +53,17 @@ $(() => {
           </div>
         `;
         $('.time-options').append($timeForms);
-      })
 
-        // Time on step 3
-      flatpickr(".flatpickr2", {
-        defaultDate: dates[0], // Date objects and date strings are also accepted
-        enableTime: true
-      });
-      // console.log('times ', times)
+         // Time on step 3
+        flatpickr(".flatpickr2", {
+          defaultDate: el,
+          // noCalendar: true,
+          enableTime: true,
+          altFormat: "F j, Y h:i K"
+        });
+
+        console.log('el ', el);
+      })
     }
   });
 
