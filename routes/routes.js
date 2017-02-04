@@ -25,5 +25,10 @@ module.exports = (knex) => {
     // res.send('google.com');
     res.json({url: 'google.com'});
   });
+
+  router.post('/create', (req, res) => {
+    res.send(req.body);  // Jeremy's almost-criminal hackery.  do not keep this.
+  })
+
   return router;
 }
