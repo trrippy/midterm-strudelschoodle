@@ -22,6 +22,7 @@ $(() => {
     static: true,
     onChange: function(selectedDates, dateStr, instance) {
       dates = selectedDates;
+      console.log('datestring is', dateStr);
       sendDates();
     }
   });

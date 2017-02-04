@@ -22,6 +22,9 @@ module.exports = {
     .then (results => {
       return results;
     })
+    .catch(err => {
+      console.log(err);
+    })
   },
 
   // Return timeslots given an event id
@@ -33,6 +36,9 @@ module.exports = {
       .then (results => {
         return results;
     })
+    .catch(err => {
+      console.log(err);
+    })
   },
   // Returns participants given an event id
   getParticipantsForEvent: (uuid) => {
@@ -42,6 +48,9 @@ module.exports = {
     .where('unique_url', '=', uuid)
     .then ((results) => {
       return results;
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
   // TODO: a list
