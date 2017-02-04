@@ -75,6 +75,10 @@
   position: static;
 }
 
+.flatpickr2 {
+  float: none;
+}
+
 body {
   background-color: #EEE;
 }

@@ -1,23 +1,22 @@
-// const moment = require('moment');
-
 $(() => {
   let dates;
   let times = {};
   // let templDates;
 
   function sendDates() {
-    $.ajax({
-      method: "post",
-      url: "/test",
-      dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({dates: dates})
-    }).then((result) => {
-      console.log(result.url);
-    });
+    // $.ajax({
+    //   method: "post",
+    //   url: "/test",
+    //   dataType: 'json',
+    //   contentType: 'application/json',
+    //   data: JSON.stringify({dates: dates})
+    // }).then((result) => {
+    //   console.log(result.url);
+    // });
   }
 
-  flatpickr(".flatpickr", {
+  // Calendar on step 2
+  flatpickr(".flatpickr1", {
     inline: true,
     mode: "multiple",
     static: true,
@@ -27,22 +26,18 @@ $(() => {
       sendDates();
     }
   });
-  // console.log('let dates: ', dates);
 
 
 
-
-  // Creation Form steps
+  // Creation Form
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     var $target = $(e.target);
     if ($target.parent().hasClass('disabled')) {
       return false;
     }
-    console.log("dates", dates);
-    console.log("times", times);
 
     if($target.attr("id") == "lnk-step3") {
-      $('.time-options').empty()
+      $('.time-options').empty();
 
       // TODO: sort the dates if that seems necessary
       dates.forEach(function(el) {
@@ -53,15 +48,23 @@ $(() => {
         const $timeForms = `
           <div class='time_for_date'>
               <span class="tweet-name">${el}</span>
-              <input type='text' name='time' value='${time_value}'>
+              <input type='text' name='time' value='${time_value}' class='flatpickr2'>
           </div>
         `;
         $('.time-options').append($timeForms);
       })
+
+        // Time on step 3
+      flatpickr(".flatpickr2", {
+        defaultDate: dates[0], // Date objects and date strings are also accepted
+        enableTime: true
+      });
+      // console.log('times ', times)
     }
   });
 
-  $('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {    var $target = $(e.target);
+  $('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
+    var $target = $(e.target);
     if ($target.parent().hasClass('disabled')) {
       return false;
     }
@@ -70,7 +73,6 @@ $(() => {
       time_divs.each((idx, element) => {
         var date_text = $(element).find('span').text();
         var time_choice = $(element).find('input').val();
-        console.log("dt, tc", date_text, time_choice);
         times[date_text] = time_choice;
       });
     }
