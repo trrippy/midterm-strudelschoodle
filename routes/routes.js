@@ -11,10 +11,15 @@ module.exports = (knex) => {
   router.get('/create', (req,res) => {
     res.render('create');
   });
-  router.post('/event/:id', (req, res) => {
+  router.get('/event/:id', (req, res) => {
     //pass form data
     //render to event page
+
+    //81b675b0-0357-4422-b861-b245d463cfaf
+    const timeSlot = getTimeslotsForEvent(req.params.id);
+    res.render('event', { ts: timeSlot });
   });
+
   router.delete('/event/:id' , (req, res) => {
 
   });
