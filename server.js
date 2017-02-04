@@ -13,7 +13,8 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
-
+const flash       = require('connect-flash');
+const cookieParser = require('cookie-parser');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/routes.js");
 
@@ -30,6 +31,7 @@ app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use("/styles", sass({
   src: __dirname + "/styles",
