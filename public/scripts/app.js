@@ -11,8 +11,6 @@ $(() => {
     static: true,
     onChange: function(selectedDates, dateStr, instance) {
       dates = selectedDates;
-      console.log('dateStr ', dateStr);
-      console.log(typeof dateStr);
     }
   });
 
