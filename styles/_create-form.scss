@@ -25,3 +25,12 @@
   position: static;
 }
 
+.flatpickr2 {
+  float: none;
+}
+
+.flatpickr-month,
+.flatpickr-innerContainer {
+  display: none;
+}
+

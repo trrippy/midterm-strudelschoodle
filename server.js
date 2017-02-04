@@ -15,6 +15,8 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const flash       = require('connect-flash');
 const cookieParser = require('cookie-parser');
+const moment      = require('moment');
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/routes.js");
 
