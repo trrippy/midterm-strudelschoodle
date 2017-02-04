@@ -43,6 +43,8 @@
 .step.nav-tabs > li > a,
 .step.nav-tabs > li.active,
 .step.nav-tabs > li.active > a,
+.step.nav-tabs > li.active > a:focus,
+.step.nav-tabs > li.active > a:hover,
 .nav-tabs > li > a {
   border: 0;
   display: inline;
@@ -75,13 +77,8 @@
   position: static;
 }
 
-.flatpickr2 {
+.timepicker {
   float: none;
-}
-
-.flatpickr-month,
-.flatpickr-innerContainer {
-  display: none;
 }
 
 body {

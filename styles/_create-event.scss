@@ -50,6 +50,8 @@
 .step.nav-tabs>li>a,
 .step.nav-tabs>li.active,
 .step.nav-tabs>li.active>a,
+.step.nav-tabs > li.active > a:focus,
+.step.nav-tabs > li.active > a:hover,
 .nav-tabs>li>a {
   border: 0;
   display: inline;
@@ -57,4 +59,3 @@
   margin: 0;
   padding: 0;
 }
-
