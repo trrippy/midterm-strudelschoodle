@@ -20,7 +20,6 @@ $(() => {
     inline: true,
     mode: "multiple",
     static: true,
-    // enableTime: true,
     onChange: function(selectedDates, dateStr, instance) {
       dates = selectedDates;
       sendDates();
@@ -40,29 +39,36 @@ $(() => {
       $('.time-options').empty();
 
       // TODO: sort the dates if that seems necessary
-      dates.forEach(function(el) {
-
+      dates.forEach(function(el, index) {
+        let formatDate = moment(el).format('MMMM Do YYYY');
+        console.log('format', formatDate);
         let time_value = times[el];
         if(time_value === undefined) {
           time_value = '';
         }
         const $timeForms = `
-          <div class='time_for_date'>
-              <span class="tweet-name">${el}</span>
-              <input type='text' name='time' value='${time_value}' class='flatpickr2'>
+          <div class='time_for_date time_for_date${index}'>
+              <span class="tweet-name">${formatDate}</span>
+              <input type="hidden" name='date${index}' value='${el}'>
+              <input type='text' name='time${index}' value='${time_value}' class='timepicker timepicker${index}'>
+              <a href='#' class='add-time'>add time</a>
           </div>
         `;
         $('.time-options').append($timeForms);
 
-         // Time on step 3
-        flatpickr(".flatpickr2", {
-          defaultDate: el,
-          // noCalendar: true,
-          enableTime: true,
-          altFormat: "F j, Y h:i K"
+        let count = 0;
+
+        $(`.time_for_date${index} .add-time`).on('click', function() {
+          $(this).before(`<input type="text" name="time${index}" value='${time_value}' class='timepicker timepicker${index} added-time${count}'>`);
+
+            createFlatPickr(".timepicker" + index + ".added-time" + count, el);
+
+            count++;
         });
 
-        console.log('el ', el);
+        // Time on step 3
+        createFlatPickr(".timepicker" + index, el);
+
       })
     }
   });
@@ -75,9 +81,15 @@ $(() => {
     if($target.attr("id") == "lnk-step3") {
       var time_divs = $('.time_for_date');
       time_divs.each((idx, element) => {
-        var date_text = $(element).find('span').text();
-        var time_choice = $(element).find('input').val();
-        times[date_text] = time_choice;
+        const date_text = $(element).find('span').text();
+        const timesArr =[];
+
+        $(element).find('input').each((index, el) => {
+          timesArr.push($(el).val());
+        });
+
+        times[date_text] = timesArr;
+        console.log('times ', times)
       });
     }
   });
@@ -94,6 +106,15 @@ $(() => {
     prevTab($active);
   });
 
+  function createFlatPickr(className, el) {
+    flatpickr(className, {
+      defaultDate: el,
+      noCalendar: true,
+      enableTime: true,
+      altFormat: "F j, Y h:i K"
+    });
+  }
+
 
   function nextTab(elem) {
       $(elem).next().find('a[data-toggle="tab"]').click();
@@ -103,3 +124,4 @@ $(() => {
   }
 
 });
+
