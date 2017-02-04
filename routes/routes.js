@@ -19,6 +19,11 @@ module.exports = (knex) => {
 
   });
 
+  router.get('/event', (req, res) => {
+    //TODO show current event based on ID
+    res.render('event');
+  });
+
   router.post('/test', (req, res) => {
     const dates = req.body.dates;
     console.log(dates);
