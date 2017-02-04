@@ -13,7 +13,7 @@
     <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='/scripts/app.js'></script>
     <script type='text/javascript' src='/scripts/validate.js'></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
   </head>
 
   <body>
@@ -45,14 +45,6 @@
                 <a href="#step3" data-toggle="tab" aria-controls="step3" id="lnk-step3" role="tab">
                   <span class='step-icon img-circle'>
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                  </span>
-                </a>
-              </li>
-
-              <li class="disabled">
-                <a href="#step4" data-toggle="tab" aria-controls="step4" id="lnk-step4" role="tab">
-                  <span class='step-icon img-circle'>
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                   </span>
                 </a>
               </li>
@@ -98,7 +90,7 @@
                 <div class='form-block tab-pane' role='tabpanel' id='step2'>
                   <h3 class='step-title'>Date Options</h3>
                   <div class='form-group clearfix'>
-                      <input class="flatpickr" type="text" data-input>
+                      <input class="flatpickr1" type="text" data-input>
                   </div>
 
                   <div class='pag'>
@@ -109,18 +101,11 @@
 
                 <div class='form-block tab-pane' role='tabpanel' id='step3'>
                   <h3 class='step-title'>Time options</h3>
+                  <div class='time-options'></div>
 
                   <div class='pag'>
                     <a href='#' class='btn btn-default back'>Back</a>
-                    <a href='#' class='btn btn-default next'>Next</a>
-                  </div>
-                </div>
-
-                <div class='form-block tab-pane' role='tabpanel' id='step4'>
-                  <h3 class='step-title'>Event URL</h3>
-
-                  <div class='pag'>
-                    <a href='#' class='btn btn-default back'>Back</a>
+                    <button type="submit" class="btn btn-default">Create Event</button>
                   </div>
                 </div>
               </div>

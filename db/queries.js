@@ -6,17 +6,6 @@ const knex        = require("knex")(knexConfig[ENV]);
 
 module.exports = {
 
-  // TODO: insert event into database
-    // this includes timeslots
-
-  // TODO: insert participant infro
-    // everything else
-
-  // TODO: display event info
-    // this will be complicated
-    // 1. lets get event description
-    // 2. lets get timeslots
-
   getAllEventsInfo: () => {
     return knex
       .select("*")
@@ -25,14 +14,30 @@ module.exports = {
         return results;
     })
   },
+
+  getEventInfo: (uuid) => {
+    return knex('events')
+    .select('*')
+    .where('unique_url', uuid)
+    .then (results => {
+      return results;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },
+
   // Return timeslots given an event id
   getTimeslotsForEvent: (uuid) => {
     return knex('timeslots')
       .join('events', 'timeslots.event_id', '=', 'events.id')
       .select('start_time')
       .where('unique_url', '=', uuid)
-      .then ((results) => {
+      .then (results => {
         return results;
+    })
+    .catch(err => {
+      console.log(err);
     })
   },
   // Returns participants given an event id
@@ -43,6 +48,9 @@ module.exports = {
     .where('unique_url', '=', uuid)
     .then ((results) => {
       return results;
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
   // TODO: a list
