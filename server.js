@@ -41,12 +41,23 @@ app.use(express.static("public"));
 
 //Routes
 app.use("/", usersRoutes(knex));
+req,params,id
+app.get('/events/:id', (req, res) => {
+  let timeslots = queries.getTimeslotsForEvent(req.params.id)
+  res.render('event_show', {timeslots: timeslots})
+})
 
-const title = 'Parteh';
-const loc = 'My house';
-const desc = 'Gun B fun';
-const arrayOfTimes = ['2017-02-03T17:00:00+00:00','2017-02-03T19:00:00+00:00']
-dbInsert.createEvent(title, loc, desc, arrayOfTimes);
+const title = 'Sleep';
+const loc = 'Lighthouse';
+const desc = 'FUN FUN FUN FUN FUN';
+const arrayOfTimes = ['2017-02-03T14:00:00+00:00','2017-02-03T18:00:00+00:00']
+// dbInsert.createEvent(title, loc, desc, arrayOfTimes);
+
+const partName = 'Sadirina';
+const partEmail = 'sadirinia@email.com';
+const eventUuid = '5a74e200-c1d2-4daf-81d2-f886f128c9be'; // event 20
+const arrayOfTimesAvail = ['2017-02-03T14:00:00.000Z'] // available for 5, but not 7
+// dbInsert.createParticipant(partName, partEmail, eventUuid, arrayOfTimesAvail)
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
