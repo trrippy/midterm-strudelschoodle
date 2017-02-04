@@ -77,7 +77,9 @@ module.exports = (knex) => {
         dates+="},{";
     }
     dates+="}]";
-    dates.replace(/)
+    dates = dates.replace(/],}/g, ']}');
+    dates = dates.replace(/,{}/g, '');
+    // dates.repalce('')
 
     console.log(dates);
     // dateObj: {
