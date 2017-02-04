@@ -43,11 +43,6 @@ app.use(express.static("public"));
 
 //Routes
 app.use("/", usersRoutes(knex));
-req,params,id
-app.get('/events/:id', (req, res) => {
-  let timeslots = queries.getTimeslotsForEvent(req.params.id)
-  res.render('event_show', {timeslots: timeslots})
-})
 
 const title = 'Sleep';
 const loc = 'Lighthouse';
