@@ -14,54 +14,75 @@
     <script type='text/javascript' src='/scripts/app.js'></script>
     <script type='text/javascript' src='/scripts/validate.js'></script>
     <style>
-      * {
+     {
         border: .5px solid red;
-      }
-
-      .container * {
-
       }
     </style>
 
   </head>
 
+
   <body>
     <% include partials/_header %>
 
     <main class='container'>
-      <div class='row'>&nbsp;</div>
       <div class='row'>
-        <div class='col-md-2'></div>
+        <div class='col-md-2'>&nbsp;</div>
         <div class='col-md-8'>
           <div class='row'>
-            <h3>Organizer</h3>
-            <h3>Date: Jan 1, 2017</h3>
-            <h3>Location</h3>
-            <h5>Description</h5>
-            <p>What is having at this event? Details will show up here</p>
-            <h5>Event URL:</h5>
-          </div>
-
-          <div class='row'>
-            <div class='col-md-2'>
-              <h4>Participants</h4>
-              <h5>guests</h5>
-              <h5>guests</h5>
-              <h5>guests</h5>
+            <div class='col-md-4'>
+              <h4>Title</h4>
+              <h4>Location</h4>
+              <h4>Organizer</h4>
+            </div>
+            <div class='col-md-8'>
+              <h4>Event URL:</h4>
+              <h4>Description</h4>
+              <p>What is having at this event? Details will show up here. What to bring? Parking? Details! Details! Details! Details! Details! Details! </p>
             </div>
           </div>
           <div class='row'>
-            <div class='col-md-6'>
-            <p>month</p>
-              <div class='row'>
-                <div class='col-md-2'>Day</div>
-                <div class='col-md-2'>Day</div>
-                <div class='col-md-2'>Day</div>
-              </div>
+            <div class='col-md-12'>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Participants</th>
+                  <th>Date1</th>
+                  <th>Date2</th>
+                  <th>Date3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th width="200px">Guest1</th>
+                  <td class='success'>Time1</td>
+                  <td class='danger'>Time2</td>
+                  <td class='danger'>Time3</td>
+                </tr>
+                <tr>
+                  <th>Guest2</th>
+                  <td class='danger'>Time1</td>
+                  <td class='success'>Time2</td>
+                  <td class='danger'>Time3</td>
+                </tr>
+                <tr>
+                  <th>Guest3</th>
+                  <td class='danger'>Time1</td>
+                  <td class='danger'>Time2</td>
+                  <td class='success'>Time3</td>
+                </tr>
+                <tr>
+                  <th><input type='text' id='guest-name' name='guest-name' placeholder='Your name'></th>
+                  <td><input type='checkbox' name='optionA'></td>
+                  <td><input type='checkbox' name='optionB'></td>
+                  <td><input type='checkbox' name='optionC'></td>
+                </tr>
+              </tbody>
+            </table>
             </div>
           </div>
+        </div>
       </div>
-
     </main>
   </body>
 </html>
