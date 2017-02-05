@@ -4,10 +4,8 @@ const router  = express.Router();
 const queries = require('../db/queries');
 const dbInsert = require('../db/db-insert');
 const dateFormat = require('dateformat');
-<<<<<<< HEAD
-=======
+
 const moment = require('moment');
->>>>>>> db1cfd44845b1bb46b6e9432b09c5a954bf29ab9
 
 // const JSON = require('json');
 let calculateDates = (json) => {
@@ -35,28 +33,48 @@ module.exports = (knex) => {
 
   router.get('/event/:id', (req, res) => {
     let templateVars = {
-      moment: moment
-    };
-    const eventInfo = queries.getEventInfo(req.params.id)
-    .then((results) => {
-      templateVars.location = results.location;
-      templateVars.title = results.title;
-      templateVars.description = results.description;
-      templateVars.url = results.unique_url;
-    })
-    .then(results => {
-      const timeSlot = queries.getTimeslotsForEvent(req.params.id)
-      .then((results) => {
-
-        const allTimes = [];
-        for(let i = 0; i < results.length; i++) {
-          allTimes.push(results[i].start_time);
+      moment: moment,
+      location: 'hey',
+      title: 'party',
+      description: 'lets go yall',
+      url: '81b675b0-0357-4422-b861-b245d463cfaf',
+      ts: ['2017-02-03T14:30:00','2017-02-16T15:00', '2017-02-16T16:00'],
+      users: {
+        'Dustin': {
+          name: 'Dustin',
+          email: 'd@email.com',
+          availability: [false, true, false]
+        },
+        'Wes': {
+          name: 'Wes',
+          email: 'w@email.com',
+          availability: [false, false, false]
         }
-        templateVars.ts = allTimes;
-        console.log(templateVars);
-        res.render('event', templateVars);
-      });
-    })
+      }
+    }
+    res.render('event', templateVars);
+
+
+    // const eventInfo = queries.getEventInfo(req.params.id)
+    // .then((results) => {
+    //   templateVars.location = results.location;
+    //   templateVars.title = results.title;
+    //   templateVars.description = results.description;
+    //   templateVars.url = results.unique_url;
+    // })
+    // .then(results => {
+    //   const timeSlot = queries.getTimeslotsForEvent(req.params.id)
+    //   .then((results) => {
+
+    //     const allTimes = [];
+    //     for(let i = 0; i < results.length; i++) {
+    //       allTimes.push(results[i].start_time);
+    //     }
+    //     templateVars.ts = allTimes;
+    //     console.log(templateVars);
+    //     res.render('event', templateVars);
+    //   });
+    // })
   });
 
   // ---------- POST
@@ -72,19 +90,18 @@ module.exports = (knex) => {
     let dates = "{";
     for(var x=0; x<dateValues; x++) {
       dates+='"date'+String(x)+'":';
-        let testing = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'HH:MM:ss");
         let arrLength = 0;
         if (typeof req.body['time'+String(x)] === 'string') {
           arrLength = 1;
           var temp = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'" + req.body['time'+ String(x)])
           dates+='{ "time'+String(x)+'":["'+temp+'"],';
-          arrEventTimes.push(temp);
+          arrEventTimes.push(moment(temp).format());
         } else {
           arrLength = req.body['time'+String(x)];
           dates+='{ "time'+String(x)+'":[';
           arrLength.forEach((item,index) => {
             let temp = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'" + req.body['time'+ String(x)][index]);
-            arrEventTimes.push(temp);
+            arrEventTimes.push(moment(temp).format());
             dates+='"'+ temp +'",';
           })
           dates+="],"

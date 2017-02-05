@@ -44,11 +44,11 @@ app.use(express.static("public"));
 //Routes
 app.use("/", usersRoutes(knex));
 
-const title = 'Sleep';
-const loc = 'Lighthouse';
-const desc = 'FUN FUN FUN FUN FUN';
+const title = 'party';
+const loc = 'hey';
+const desc = 'lets go yall';
 const arrayOfTimes = ['2017-02-03T14:00:00+00:00','2017-02-16T00:00']
-dbInsert.createEvent(title, loc, desc, arrayOfTimes);
+// dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
 const partName = 'Sadirina';
 const partEmail = 'sadirinia@email.com';
