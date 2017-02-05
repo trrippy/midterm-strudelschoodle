@@ -19,10 +19,10 @@ module.exports = {
     return knex('events')
     .select('*')
     .where('unique_url', uuid)
-    .then (results => {
-      return results;
+    .then ((results) => {
+      return results[0];
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     })
   },
@@ -33,10 +33,10 @@ module.exports = {
       .join('events', 'timeslots.event_id', '=', 'events.id')
       .select('start_time')
       .where('unique_url', '=', uuid)
-      .then (results => {
-        return results;
+      .then ((results) => {
+        return results[0].start_time;
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     })
   },
@@ -47,9 +47,9 @@ module.exports = {
     .select('participants.id', 'name', 'email', 'admin')
     .where('unique_url', '=', uuid)
     .then ((results) => {
-      return results;
+      return results
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     })
   }

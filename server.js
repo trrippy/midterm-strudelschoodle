@@ -47,7 +47,7 @@ const title = 'Sleep';
 const loc = 'Lighthouse';
 const desc = 'FUN FUN FUN FUN FUN';
 const arrayOfTimes = ['2017-02-03T14:00:00+00:00','2017-02-03T18:00:00+00:00']
-dbInsert.createEvent(title, loc, desc, arrayOfTimes);
+// dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
 const partName = 'Sadirina';
 const partEmail = 'sadirinia@email.com';

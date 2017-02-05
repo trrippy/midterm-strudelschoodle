@@ -15,7 +15,6 @@ $(() => {
   });
 
 
-
   // Creation Form
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     var $target = $(e.target);
