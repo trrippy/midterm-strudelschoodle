@@ -79,8 +79,6 @@ module.exports = (knex) => {
     dates+="}]";
     let newdates = dates.replace(/],}/g, ']}');
     // dates.repalce('')
-    console.log(newdates);
-    console.log(typeof dates);
 
     res.send(req.body);
   });
