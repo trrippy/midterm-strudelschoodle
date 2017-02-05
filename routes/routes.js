@@ -4,6 +4,7 @@ const router  = express.Router();
 const queries = require('../db/queries');
 const dbInsert = require('../db/db-insert');
 const dateFormat = require('dateformat');
+
 const moment = require('moment');
 
 // const JSON = require('json');
@@ -32,54 +33,100 @@ module.exports = (knex) => {
 
   router.get('/event/:id', (req, res) => {
     let templateVars = {
-      moment: moment
-    };
-    const eventInfo = queries.getEventInfo(req.params.id)
-    .then((results) => {
-      templateVars.location = results.location;
-      templateVars.title = results.title;
-      templateVars.description = results.description;
-      templateVars.url = results.unique_url;
-    })
-    .then(results => {
-      const timeSlot = queries.getTimeslotsForEvent(req.params.id)
-      .then((results) => {
-
-        const allTimes = [];
-        for(let i = 0; i < results.length; i++) {
-          allTimes.push(results[i].start_time);
+      moment: moment,
+      location: 'hey',
+      title: 'party',
+      description: 'lets go yall',
+      url: '81b675b0-0357-4422-b861-b245d463cfaf',
+      ts: ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00'],
+      users: {
+        'Dustin': {
+          name: 'Dustin',
+          email: 'd@email.com',
+          // This availability must be in the SAME order as the timeslots
+          // AKA if availability[0] is true, Dustin can make it for the ts[0] timeslot.
+          availability: [false, true, false]
+        },
+        'Wes': {
+          name: 'Wes',
+          email: 'w@email.com',
+          availability: [false, false, false]
         }
         templateVars.ts = allTimes;
         res.render('event', templateVars);
-      });
-    })
+      };
+    }
+    // res.render('event', templateVars);
+
+
+    // const eventInfo = queries.getEventInfo(req.params.id)
+    // .then((results) => {
+    //   templateVars.location = results.location;
+    //   templateVars.title = results.title;
+    //   templateVars.description = results.description;
+    //   templateVars.url = results.unique_url;
+    // })
+    // .then(results => {
+    //   const timeSlot = queries.getTimeslotsForEvent(req.params.id)
+    //   .then((results) => {
+
+    //     const allTimes = [];
+    //     for(let i = 0; i < results.length; i++) {
+    //       allTimes.push(results[i].start_time);
+    //     }
+    //     templateVars.ts = allTimes;
+    //     console.log(templateVars);
+    //     res.render('event', templateVars);
+    //   });
+    // })
   });
 
   // ---------- POST
   router.post('/create', (req, res) => {
+
     let title = req.body.title;
-    let location = req.body.location;
-    let desc = req.body.description;
-    let date = req.body.date0;
-    let newdate = new Date();
-    let dateObj = dateFormat(date,
-      "fullDate");
-    let numDates = 0;
+    let loc = req.body.location;
+    let desc = req.body.description
+    let arrEventTimes = [];
+
+// This catastrophe creates a the form and builds a JSON string which is converted into the dates object;
     let dateValues = calculateDates(req.body);;
-    let dates = "[{";
+    let dates = "{";
     for(var x=0; x<dateValues; x++) {
-      dates+="date"+String(x)+":";
-      var tempnew = dateFormat(req.body['date'+String(x)], 'fullDate');
-      var temp = req.body['time'+ String(x)];
-      tempnew=tempnew +":"+temp;
-      dates+="{ time"+String(x)+":["+String(tempnew)+"],";
-      dates+="},{";
+      dates+='"date'+String(x)+'":';
+        let arrLength = 0;
+        if (typeof req.body['time'+String(x)] === 'string') {
+          arrLength = 1;
+          var temp = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'" + req.body['time'+ String(x)])
+          dates+='{ "time'+String(x)+'":["'+temp+'"],';
+          arrEventTimes.push(moment(temp).format());
+        } else {
+          arrLength = req.body['time'+String(x)];
+          dates+='{ "time'+String(x)+'":[';
+          arrLength.forEach((item,index) => {
+            let temp = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'" + req.body['time'+ String(x)][index]);
+            arrEventTimes.push(moment(temp).format());
+            dates+='"'+ temp +'",';
+          })
+          dates+="],"
+        }
+      dates+="},";
     }
     dates+="}]";
+
     let newdates = dates.replace(/],}/g, ']}');
     // dates.repalce('')
 
-    res.send(req.body);
+    dates = dates.replace(/],}/g, ']}');
+    dates = dates.replace(/,{}/g, '');
+    dates = dates.replace(/]}]/g, ']}');
+    dates = dates.replace(/]},}]/g, ']}}');
+    dates = dates.replace(/,]}/g, ']}');
+// ------------------------------------------------------------------------------
+
+    dbInsert.createEvent(title, loc, desc, arrEventTimes);
+    res.redirect('/');
+
   });
   // ---------- UPDATE
   // This is what the participants post

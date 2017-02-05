@@ -1,118 +1,166 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <title><%- title %></title>
+<head>
+  <title><%- title %></title>
 
-    <link rel='stylesheet' href='/vendor/normalize-4.1.1.css' type='text/css' />
-    <link rel='stylesheet' href='/vendor/border-box.css' type='text/css' />
-    <link rel='stylesheet' href='/styles/layout.css' type='text/css' />
-    <link rel='stylesheet' href='/styles/bootstrap.min.css' type='text/css' />
-    <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
-    <script src="https://unpkg.com/flatpickr"></script>
-    <script type='text/javascript' src='/vendor/jquery-3.0.0.js'></script>
-    <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='/scripts/app.js'></script>
-    <script type='text/javascript' src='/scripts/validate.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+  <link rel='stylesheet' href='/vendor/normalize-4.1.1.css' type='text/css' />
+  <link rel='stylesheet' href='/vendor/border-box.css' type='text/css' />
+  <link rel='stylesheet' href='/styles/layout.css' type='text/css' />
+  <link rel='stylesheet' href='/styles/bootstrap.min.css' type='text/css' />
+  <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+  <script src="https://unpkg.com/flatpickr"></script>
+  <script type='text/javascript' src='/vendor/jquery-3.0.0.js'></script>
+  <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+  <script type='text/javascript' src='/scripts/app.js'></script>
+  <script type='text/javascript' src='/scripts/validate.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 
-  </head>
-  <body>
-    <% include partials/_header %>
+</head>
+<body>
+  <% include partials/_header %>
 
-    <main class='container'>
+  <main class='container'>
+
+  <!-- General Event info -->
+  <section class='row'>
+    <div class='col-md-12'>
       <div class='row'>
-        <div class='col-md-2'>&nbsp;</div>
+        <div class='col-md-4'>
+          <h4>Title</h4>
+          <p><%- title %></p>
+          <h4>Location</h4>
+          <p><%- location %></p>
+          <h4>Organizer</h4>
+          <p>John Smith</p>
+        </div>
         <div class='col-md-8'>
-          <div class='row'>
-            <div class='col-md-4'>
-              <h4>Title</h4>
-              <p><%- title %></p>
-              <h4>Location</h4>
-              <p><%- location %></p>
-              <h4>Organizer</h4>
-              <p>John Smith<p>
-            </div>
-            <div class='col-md-8'>
-              <h4>Event URL</h4>
-              <a href="#"> http://event/<%- url %></a>
-              <h4>Description</h4>
-              <p><%- description %></p>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-md-12'>
-            <form method='POST' action='/event/<%= url %>'>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th width='30%'>Participants</th>
-                  <% for(let i = 0; i < ts.length; i++) { %>
-                    <th class='text-center' ><%- moment(ts[i]).format('h:mm') %></th>
-                    <!-- <input type="text" name="time" value="<%- ts[i] %>"> -->
-                  <% } %>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input class="form-control" type='text' name='guest_name' placeholder='Enter your name'>
-                  </td>
-                  <td class='text-center'><input type='checkbox' name='optionA'></td>
-                  <td class='text-center'><input type='checkbox' name='optionB'></td>
-                </tr>
-              </tbody>
-            </table>
-            <div>
-              <button type="submit" class='btn btn-default'>
-                <span class='glyphicon glyphicon-plus'></span>Add Name
-              </button>
-            </div>
-            </form>
-
-
-              <!-- <thead>
-                <tr>
-                  <th>Participants</th>
-                  <th><%- ts %></th>
-                  <th>Date2</th>
-                  <th>Date3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Guest1<span class='glyphicon glyphicon-trash'></span></th>
-                  <td class='success'>Time1</td>
-                  <td class='danger'>Time2</td>
-                  <td class='danger'>Time3</td>
-                </tr>
-                <tr>
-                  <th>Guest2<span class='glyphicon glyphicon-trash'></span></th>
-                  <td class='danger'>Time1</td>
-                  <td class='success'>Time2</td>
-                  <td class='danger'>Time3</td>
-                </tr>
-                <tr>
-                  <th>Guest3<span class='glyphicon glyphicon-trash'<</span></th>
-                  <td class='danger'>Time1</td>
-                  <td class='danger'>Time2</td>
-                  <td class='success'>Time3</td>
-                </tr>
-                <form method='POST' action='/create/:ID/update'>
-                <tr>
-                  <th>
-                    <input type='text' id='guest-name' name='guest-name' placeholder='Your name'>
-                    <button type="submit" class='glyphicon glyphicon-plus'>Add Name</button>
-                  </th>
-                  <td><input type='checkbox' name='optionA'></td>
-                  <td><input type='checkbox' name='optionB'></td>
-                  <td><input type='checkbox' name='optionC'></td>
-                </tr> -->
-              </tbody>
-            </table>
-            </div>
-          </div>
+          <h4>Event URL</h4>
+          <a href="#"> http://event/<%- url %></a>
+          <h4>Description</h4>
+          <p><%- description %></p>
         </div>
       </div>
-    </main>
-  </body>
+    </div>
+  </section>
+
+  <!-- Dynamic Table -->
+  <section class='row'>
+      <div class='col-md-12'>
+        <!-- <form method='POST' action='/event/<%= url %>'> -->
+        <table class="table table-striped">
+
+          <!-- Makes a column for every timeslot in timeslot events -->
+          <thead>
+            <tr>
+              <th width='30%'>&nbsp</th>
+              <% for(let i = 0; i < ts.length; i++) { %>
+              <th class='text-center'><%- moment(ts[i]).format('dddd[,] MMM[.] Do') %></th>
+              <% } %>
+            </tr>
+            <tr>
+              <th width='30%'>Participants</th>
+              <% for(let i = 0; i < ts.length; i++) { %>
+              <th class='text-center' ><%- moment(ts[i]).format('h:mm') %></th>
+              <% } %>
+            </tr>
+          </thead>
+
+        <!-- TODO: Gets users and sets column color -->
+        <tbody>
+
+          <!-- Making a row for every user -->
+          <tr class='table-danger'>
+          <!-- User Name -->
+          <% for (user in users) { %>
+            <td>
+              <span>
+                <%- users[user].name %>
+              </span>
+            </td>
+
+              <!-- Compares boolean between user availabilities and timeslots -->
+              <% for(let i = 0; i < ts.length; i++) { %>
+                <!-- if the user availibility is true, display green, else red -->
+                <% if (users[user].availability[i]) { %>
+                <td class='text-center bg-success'>
+                  <%- users[user].availability[i] %>
+                </td>
+                <% } else { %>
+                  <td class='text-center bg-danger'>
+                  <%- users[user].availability[i] %>
+                  </td>
+                <% } %>
+              <% } %>
+          </tr>
+          <% } %>
+
+          <tr>
+            <td>
+              <input class="form-control" type='text' name='guest_name' placeholder='Enter your name'>
+            </td>
+            <% for(let i = 0; i < ts.length; i++) { %>
+            <td class='text-center'>
+              <input type='checkbox' name='guest_time' value='<%- moment(ts[i]).format()%>'>
+            </td>
+            <% } %>
+          </tr>
+        </tbody>
+
+      </table>
+      <div>
+        <button type="submit" class='btn btn-default'>
+          <span class='glyphicon glyphicon-plus'></span>Add Name
+        </button>
+      </div>
+      </form>
+<!--
+
+        <thead>
+          <tr>
+            <th>Participants</th>
+            <th><%- ts %></th>
+
+            <th>Date2</th>
+            <th>Date3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Guest1<span class='glyphicon glyphicon-trash'></span></th>
+
+            <td class='success'>Time1</td>
+            <td class='danger'>Time2</td>
+            <td class='danger'>Time3</td>
+          </tr>
+          <tr>
+            <th>Guest2<span class='glyphicon glyphicon-trash'></span></th>
+
+            <td class='danger'>Time1</td>
+            <td class='success'>Time2</td>
+            <td class='danger'>Time3</td>
+          </tr>
+          <tr>
+            <th>Guest3<span class='glyphicon glyphicon-trash'<</span></th>
+
+            <td class='danger'>Time1</td>
+            <td class='danger'>Time2</td>
+            <td class='success'>Time3</td>
+          </tr>
+          <form method='POST' action='/create/:ID/update'>
+          <tr>
+            <th>
+              <input type='text' id='guest-name' name='guest-name' placeholder='Your name'>
+              <button type="submit" class='glyphicon glyphicon-plus'>Add Name</button>
+            </th>
+            <td><input type='checkbox' name='optionA'></td>
+            <td><input type='checkbox' name='optionB'></td>
+            <td><input type='checkbox' name='optionC'></td>
+          </tr>
+        </tbody> -->
+      </table>
+      </div>
+    </div>
+  </div>
+  </main>
+</body>
 </html>
