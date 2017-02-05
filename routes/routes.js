@@ -5,7 +5,6 @@ const router  = express.Router();
 const queries = require('../db/queries.js');
 const dbInsert = require('../db/db-insert');
 const dateFormat = require('dateformat');
-// const JSON = require('json');
 
 let calculateDates = (json) => {
   var counter =0;
@@ -41,53 +40,46 @@ module.exports = (knex) => {
   // ---------- POST
 
   router.post('/create', (req, res) => {
-    //pass form data
-    //render to event page
-    console.log(req.body);
+
     let title = req.body.title;
-    let location = req.body.location;
-    let desc = req.body.description;
-    let date = req.body.date0;
-    let newdate = new Date();
-    let dateObj = dateFormat(date,
-      "fullDate");
-    let numDates = 0;
-    //rlet dates = [];
+    let loc = req.body.location;
+    let desc = req.body.description
+    let arrEventTimes = [];
 
+// This catastrophe creates a the form and builds a JSON string which is converted into the dates object;
     let dateValues = calculateDates(req.body);;
-
-    // let obj = req.body;
-    // for(let date in obj) {
-    //     if(/^date/.test(obj))
-    //       dates.push(date = {});
-    // }
-    // console.log(dates);
-    let dates = "[{";
+    let dates = "{";
     for(var x=0; x<dateValues; x++) {
-      dates+="date"+String(x)+":";
-      //for(var y=0; y<dateValues[1]; y++){
-          //for the time values
-          var tempnew = dateFormat(req.body['date'+String(x)], 'fullDate');
-          var temp = req.body['time'+ String(x)];
-          tempnew=tempnew +":"+temp;
-          console.log(temp);
-            dates+="{ time"+String(x)+":["+String(tempnew)+"],";
-
-      //}
-        dates+="},{";
+      dates+='"date'+String(x)+'":';
+        let testing = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'HH:MM:ss");
+        let arrLength = 0;
+        if (typeof req.body['time'+String(x)] === 'string') {
+          arrLength = 1;
+          var temp = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'" + req.body['time'+ String(x)])
+          dates+='{ "time'+String(x)+'":["'+temp+'"],';
+          arrEventTimes.push(temp);
+        } else {
+          arrLength = req.body['time'+String(x)];
+          dates+='{ "time'+String(x)+'":[';
+          arrLength.forEach((item,index) => {
+            let temp = dateFormat(req.body['date'+String(x)],"yyyy-mm-dd'T'" + req.body['time'+ String(x)][index]);
+            arrEventTimes.push(temp);
+            dates+='"'+ temp +'",';
+          })
+          dates+="],"
+        }
+      dates+="},";
     }
     dates+="}]";
     dates = dates.replace(/],}/g, ']}');
     dates = dates.replace(/,{}/g, '');
-    // dates.repalce('')
+    dates = dates.replace(/]}]/g, ']}');
+    dates = dates.replace(/]},}]/g, ']}}');
+    dates = dates.replace(/,]}/g, ']}');
+// ------------------------------------------------------------------------------
 
-    console.log(dates);
-    // dateObj: {
-    //   time0: req.body.time0[0]+":"+req.body.time0[1]
-    //   }
-    // }]
-    // console.log(dates);
-    res.send(req.body);
+    dbInsert.createEvent(title, loc, desc, arrEventTimes);
+    res.redirect('/');
   });
 
   // ---------- UPDATE

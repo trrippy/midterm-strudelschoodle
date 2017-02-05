@@ -19,6 +19,7 @@ const moment      = require('moment');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/routes.js");
+const dbInsert = require('./db/db-insert');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -46,13 +47,13 @@ app.use("/", usersRoutes(knex));
 const title = 'Sleep';
 const loc = 'Lighthouse';
 const desc = 'FUN FUN FUN FUN FUN';
-const arrayOfTimes = ['2017-02-03T14:00:00+00:00','2017-02-03T18:00:00+00:00']
-// dbInsert.createEvent(title, loc, desc, arrayOfTimes);
+const arrayOfTimes = ['2017-02-03T14:00:00+00:00','2017-02-16T00:00']
+dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
 const partName = 'Sadirina';
 const partEmail = 'sadirinia@email.com';
 const eventUuid = '5a74e200-c1d2-4daf-81d2-f886f128c9be'; // event 20
-const arrayOfTimesAvail = ['2017-02-03T14:00:00.000Z'] // available for 5, but not 7
+const arrayOfTimesAvail = ['2017-02-16T00:00'] // available for 5, but not 7
 // dbInsert.createParticipant(partName, partEmail, eventUuid, arrayOfTimesAvail)
 
 app.listen(PORT, () => {
