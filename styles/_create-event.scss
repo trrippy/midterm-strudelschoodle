@@ -17,6 +17,13 @@
   }
 }
 
+#lnk-step1,
+#lnk-step2,
+#lnk-step3 {
+  cursor: default;
+  pointer-events: none;
+}
+
 #lnk-step1 .glyphicon-list-alt {
   left: -1px;
 }

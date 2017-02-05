@@ -147,12 +147,7 @@ $(() => {
       let $active = $('.container .steps-list .active');
       prevTab($active);
     } else {$error1.hide()}
-    // console.log("1")
 
-    // var $active = $('.container .steps-list .active');
-    // prevTab($active);
-
-    // console.log("2")
   });
 
   $(".back").click(function(e) {

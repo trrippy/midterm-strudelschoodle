@@ -15,6 +15,13 @@
   color: #337ab7;
 }
 
+#lnk-step1,
+#lnk-step2,
+#lnk-step3 {
+  cursor: default;
+  pointer-events: none;
+}
+
 #lnk-step1 .glyphicon-list-alt {
   left: -1px;
 }
@@ -188,6 +195,39 @@
 
 .glyphicon-plus {
   height: 50px;
+}
+
+/* Event info table */
+.event-table-wrapper {
+  background-color: #f9f9f9;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  width: 62%;
+}
+
+.event-table-wrapper .event-table {
+  border: 0;
+}
+
+.event-table-wrapper .event-name {
+  border: 0;
+}
+
+.event-table-wrapper .event-data {
+  border: 0;
+  font-size: 1.2em;
+}
+
+.event-table-wrapper .event-title {
+  margin: 0 0 5px;
+  padding: 0;
+}
+
+.btn-add .glyphicon-plus {
+  height: auto;
+  padding-right: 6px;
+  width: auto;
 }
 
 body {
