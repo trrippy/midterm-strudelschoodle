@@ -1,19 +1,8 @@
+
 $(() => {
   let dates;
   let times = {};
   // let templDates;
-
-  function sendDates() {
-    // $.ajax({
-    //   method: "post",
-    //   url: "/test",
-    //   dataType: 'json',
-    //   contentType: 'application/json',
-    //   data: JSON.stringify({dates: dates})
-    // }).then((result) => {
-    //   console.log(result.url);
-    // });
-  }
 
   // Calendar on step 2
   flatpickr(".flatpickr1", {
@@ -22,11 +11,8 @@ $(() => {
     static: true,
     onChange: function(selectedDates, dateStr, instance) {
       dates = selectedDates;
-      console.log('datestring is', dateStr);
-      sendDates();
     }
   });
-
 
 
   // Creation Form
@@ -42,7 +28,6 @@ $(() => {
       // TODO: sort the dates if that seems necessary
       dates.forEach(function(el, index) {
         let formatDate = moment(el).format('MMMM Do YYYY');
-        console.log('format', formatDate);
         let time_value = times[el];
         if(time_value === undefined) {
           time_value = '';
@@ -61,9 +46,7 @@ $(() => {
 
         $(`.time_for_date${index} .add-time`).on('click', function() {
           $(this).before(`<input type="text" name="time${index}" value='${time_value}' class='timepicker timepicker${index} added-time${count}'>`);
-
             createFlatPickr(".timepicker" + index + ".added-time" + count, el);
-
             count++;
         });
 
@@ -90,7 +73,7 @@ $(() => {
         });
 
         times[date_text] = timesArr;
-        console.log('times ', times)
+        console.log('times object ', times);
       });
     }
   });
@@ -125,4 +108,3 @@ $(() => {
   }
 
 });
-

@@ -1,14 +1,17 @@
 "use strict";
-
 const express = require('express');
 const router  = express.Router();
-const queries = require('../db/queries.js');
+const queries = require('../db/queries');
 const dbInsert = require('../db/db-insert');
 const dateFormat = require('dateformat');
+<<<<<<< HEAD
+=======
+const moment = require('moment');
+>>>>>>> db1cfd44845b1bb46b6e9432b09c5a954bf29ab9
 
+// const JSON = require('json');
 let calculateDates = (json) => {
   var counter =0;
-
   var dateElements = [];
   for(var key in json){
     var x = "date"+String(counter);
@@ -21,9 +24,7 @@ let calculateDates = (json) => {
 }
 
 module.exports = (knex) => {
-
   //  -------- GET
-
   router.get("/", (req, res) => {
     res.render("index");
   });
@@ -33,12 +34,32 @@ module.exports = (knex) => {
   });
 
   router.get('/event/:id', (req, res) => {
-    //TODO show current event based on ID
-    res.render('event');
+    let templateVars = {
+      moment: moment
+    };
+    const eventInfo = queries.getEventInfo(req.params.id)
+    .then((results) => {
+      templateVars.location = results.location;
+      templateVars.title = results.title;
+      templateVars.description = results.description;
+      templateVars.url = results.unique_url;
+    })
+    .then(results => {
+      const timeSlot = queries.getTimeslotsForEvent(req.params.id)
+      .then((results) => {
+
+        const allTimes = [];
+        for(let i = 0; i < results.length; i++) {
+          allTimes.push(results[i].start_time);
+        }
+        templateVars.ts = allTimes;
+        console.log(templateVars);
+        res.render('event', templateVars);
+      });
+    })
   });
 
   // ---------- POST
-
   router.post('/create', (req, res) => {
 
     let title = req.body.title;
@@ -80,43 +101,40 @@ module.exports = (knex) => {
 
     dbInsert.createEvent(title, loc, desc, arrEventTimes);
     res.redirect('/');
+
   });
-
   // ---------- UPDATE
-
   // This is what the participants post
   // Needs to be changed with methodoverride
   router.post('/create/:id/update', (req,res) => {
-
   });
-
   // ---------- DELETE
-
   // this deletes a users timeslots
   router.delete('/event/:id/delete' , (req, res) => {
-
-  });
-
-  // ---------- TESTING
-
-  router.get('/testing', (req,res) => {
-    let eventUrl = '5a74e200-c1d2-4daf-81d2-f886f128c9be';
-    queries.getEventInfo('5a74e200-c1d2-4daf-81d2-f886f128c9be')
-    .then(results => {
-      res.send(results);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  });
-
-  router.post('/create', (req, res) => {
-    const dates = req.body.dates;
-    console.log(dates);
-    // res.send('google.com');
-    res.json({url: 'google.com'});
   });
 
 
+  // router.post('/create', (req, res) => {
+  //   const dates = req.body.dates;
+  //   console.log(dates);
+  //   // res.send('google.com');
+  //   res.json({url: 'google.com'});
+  // });
+
+  router.post('/event/:id', (req, res) => {
+    let name = req.body.guest_name;
+    console.log('name', name);
+    let url = req.params.id;
+    console.log('url', url);
+    let timeslot = ['2017-02-03 14:00:00+00'];
+
+// 81b675b0-0357-4422-b861-b245d463cfaf EVENT 9 url
+
+    // res.send(req.body);
+    // queries.getParticipantsForEvent();
+    dbInsert.createParticipant(name, url, timeslot);
+
+    res.redirect("/event/81b675b0-0357-4422-b861-b245d463cfaf");
+  });
   return router;
 }

@@ -34,8 +34,8 @@ module.exports = {
       })
     })
   },
-
-  createParticipant: (participantName, participantEmail, eventUrl, arrOfTimeslots) => {
+// put email back in??????
+  createParticipant: (participantName, eventUrl, arrOfTimeslots) => {
     let eventId = 0;
     let participantId = 0;
     // SELECT id FROM events WHERE unique_url='uuid'
@@ -50,7 +50,7 @@ module.exports = {
       knex
       .insert([{
         name: participantName,
-        email: participantEmail,
+        // email: participantEmail,
         event_id: results[0].id
       }], 'id')
       .into('participants')
