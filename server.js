@@ -50,11 +50,11 @@ const desc = 'lets go yall';
 const arrayOfTimes = ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00']
 // dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
-const partName = 'Sadirina';
-const partEmail = 'sadirinia@email.com';
-const eventUuid = '5a74e200-c1d2-4daf-81d2-f886f128c9be'; // event 20
-const arrayOfTimesAvail = ['2017-02-16T00:00'] // available for 5, but not 7
-// dbInsert.createParticipant(partName, partEmail, eventUuid, arrayOfTimesAvail)
+const partName = 'Wes';
+const partEmail = 'wes@email.com';
+const eventUuid = 'f9ecd550-e2c7-4792-875d-ea3e96ca7718'; // event 20
+const arrayOfTimesAvail = ['2017-02-05T15:00:00'] // available for 5, but not 7
+dbInsert.createParticipant(partName, eventUuid, arrayOfTimesAvail)
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

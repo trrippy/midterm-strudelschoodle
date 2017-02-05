@@ -32,51 +32,60 @@ module.exports = (knex) => {
   });
 
   router.get('/event/:id', (req, res) => {
+    console.log('event url', req.params.id);
     let templateVars = {
       moment: moment,
-      location: 'hey',
-      title: 'party',
-      description: 'lets go yall',
-      url: '81b675b0-0357-4422-b861-b245d463cfaf',
-      ts: ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00'],
-      users: {
-        'Dustin': {
-          name: 'Dustin',
-          email: 'd@email.com',
-          // This availability must be in the SAME order as the timeslots
-          // AKA if availability[0] is true, Dustin can make it for the ts[0] timeslot.
-          availability: [false, true, false]
-        },
-        'Wes': {
-          name: 'Wes',
-          email: 'w@email.com',
-          availability: [false, false, false]
-        }
-      }
+      url: req.params.id
     }
-    res.render('event', templateVars);
 
-
-    // const eventInfo = queries.getEventInfo(req.params.id)
-    // .then((results) => {
-    //   templateVars.location = results.location;
-    //   templateVars.title = results.title;
-    //   templateVars.description = results.description;
-    //   templateVars.url = results.unique_url;
-    // })
-    // .then(results => {
-    //   const timeSlot = queries.getTimeslotsForEvent(req.params.id)
-    //   .then((results) => {
-
-    //     const allTimes = [];
-    //     for(let i = 0; i < results.length; i++) {
-    //       allTimes.push(results[i].start_time);
+    // HARD CODE
+    // let templateVars = {
+    //   moment: moment,
+    //   location: 'hey',
+    //   title: 'party',
+    //   description: 'lets go yall',
+    //   url: '81b675b0-0357-4422-b861-b245d463cfaf',
+    //   ts: ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00'],
+    //   users: {
+    //     'Dustin': {
+    //       name: 'Dustin',
+    //       email: 'd@email.com',
+    //       // This availability must be in the SAME order as the timeslots
+    //       // AKA if availability[0] is true, Dustin can make it for the ts[0] timeslot.
+    //       availability: [false, true, false]
+    //     },
+    //     'Wes': {
+    //       name: 'Wes',
+    //       email: 'w@email.com',
+    //       availability: [false, false, false]
     //     }
-    //     templateVars.ts = allTimes;
-    //     console.log(templateVars);
-    //     res.render('event', templateVars);
-    //   });
-    // })
+    //   }
+    // }
+    // res.render('event', templateVars);
+
+    // adding event into to templateVars
+    const eventInfo = queries.getEventInfo(req.params.id)
+    .then((results) => {
+      templateVars.location = results.location;
+      templateVars.title = results.title;
+      templateVars.description = results.description;
+      templateVars.url = results.unique_url;
+    })
+    .then(results => {
+      const timeSlot = queries.getTimeslotsForEvent(req.params.id)
+      .then(results => {
+        const allTimes = [];
+        for(let i = 0; i < results.length; i++) {
+          allTimes.push(results[i].start_time);
+        }
+        templateVars.ts = allTimes;
+        console.log('final templateVars sent to server', templateVars);
+        // res.render('event', templateVars);
+      })
+      .then(results => {
+
+      })
+    })
   });
 
   // ---------- POST

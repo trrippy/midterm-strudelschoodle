@@ -33,8 +33,8 @@ module.exports = {
       .join('events', 'timeslots.event_id', '=', 'events.id')
       .select('start_time')
       .where('unique_url', '=', uuid)
+      .orderBy('start_time')
       .then ((results) => {
-        console.log('resuuuuuuult: ', results);
         return results;
     })
     .catch((err) => {
@@ -45,7 +45,7 @@ module.exports = {
   getParticipantsForEvent: (uuid) => {
     return knex('participants')
     .join('events', 'participants.event_id', '=', 'events.id')
-    .select('participants.id', 'name', 'email', 'admin')
+    .select('participants.id', 'name', 'email')
     .where('unique_url', '=', uuid)
     .then ((results) => {
       return results
@@ -53,6 +53,14 @@ module.exports = {
     .catch((err) => {
       console.log(err);
     })
-  }
+  },
+  // Rreturns timeslots for
+  // getTimeslotsForParticipants: (uuid) => {
+  //   return knex('timeslots')
+  //   .join('events', 'timeslots.event_id', '=', 'events.id')
+  //   .select('start_time')
+  //   .where('unique_url', '=', uuid)
+  //   .orderBy('start_time');
+  // }
   // TODO: a list
 }

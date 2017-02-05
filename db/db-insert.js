@@ -38,6 +38,8 @@ module.exports = {
   createParticipant: (participantName, eventUrl, arrOfTimeslots) => {
     let eventId = 0;
     let participantId = 0;
+    let arrOfEventTimes = [];
+    let arrOfEventTimesId = [];
     // SELECT id FROM events WHERE unique_url='uuid'
     knex('events')
     .where({
@@ -65,22 +67,47 @@ module.exports = {
         })
         .select('start_time', 'id')
         .then(results => {
-          results.forEach(item =>{
-            available = arrOfTimeslots.includes(item.start_time.toISOString());
+
+          results.forEach(item => {
+            arrOfEventTimes.push(item.start_time.toISOString().substring(0,19));
+            arrOfEventTimesId.push(item.id);
+          })
+          arrOfEventTimes.forEach((item, index) => {
+
             knex
             .insert([{
               participant_id: participantId,
-              timeslot_id: item.id,
-              is_available: available
+              timeslot_id: arrOfEventTimesId[index],
+              is_available: false
             }], 'id')
             .into('availability')
             .then(results => {
-              return (results);
             })
           })
-        });
+        })
+        .then(results => {
+          arrOfTimeslots.forEach(item => {
+            let available = false;
+            let index = arrOfEventTimes.indexOf(item);
+            let timeslotId = index;
+            if (index >= 0) {
+              available = true;
+              knex('availability')
+              .where({
+                participant_id: participantId,
+                timeslot_id: arrOfEventTimesId[index]
+              })
+              .update('is_available', true)
+              .then(results => {
+                return results;
+              })
+            }
+          })
         })
       })
-    }
-
+    })
+  }
 }
+
+
+
