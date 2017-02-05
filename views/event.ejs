@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    <title>Event <!-- include event name here --> </title>
+    <title><%- title %></title>
 
     <link rel='stylesheet' href='/vendor/normalize-4.1.1.css' type='text/css' />
     <link rel='stylesheet' href='/vendor/border-box.css' type='text/css' />
@@ -13,6 +13,8 @@
     <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='/scripts/app.js'></script>
     <script type='text/javascript' src='/scripts/validate.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+
   </head>
   <body>
     <% include partials/_header %>
@@ -39,8 +41,36 @@
           </div>
           <div class='row'>
             <div class='col-md-12'>
+            <form method='POST' action='/event/<%= url %>'>
             <table class="table table-striped">
               <thead>
+                <tr>
+                  <th width='30%'>Participants</th>
+                  <% for(let i = 0; i < ts.length; i++) { %>
+                    <th class='text-center' ><%- moment(ts[i]).format('h:mm') %></th>
+                    <!-- <input type="text" name="time" value="<%- ts[i] %>"> -->
+                  <% } %>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input class="form-control" type='text' name='guest_name' placeholder='Enter your name'>
+                  </td>
+                  <td class='text-center'><input type='checkbox' name='optionA'></td>
+                  <td class='text-center'><input type='checkbox' name='optionB'></td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <button type="submit" class='btn btn-default'>
+                <span class='glyphicon glyphicon-plus'></span>Add Name
+              </button>
+            </div>
+            </form>
+
+
+              <!-- <thead>
                 <tr>
                   <th>Participants</th>
                   <th><%- ts %></th>
@@ -76,7 +106,7 @@
                   <td><input type='checkbox' name='optionA'></td>
                   <td><input type='checkbox' name='optionB'></td>
                   <td><input type='checkbox' name='optionC'></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
             </div>

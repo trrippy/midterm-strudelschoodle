@@ -31,32 +31,33 @@ module.exports = (knex) => {
   });
 
   router.get('/event/:id', (req, res) => {
-    let templateVars = {};
+    let templateVars = {
+      moment: moment
+    };
     const eventInfo = queries.getEventInfo(req.params.id)
     .then((results) => {
       templateVars.location = results.location;
       templateVars.title = results.title;
       templateVars.description = results.description;
       templateVars.url = results.unique_url;
-
-      // res.render('event', templateVars);
     })
     .then(results => {
       const timeSlot = queries.getTimeslotsForEvent(req.params.id)
       .then((results) => {
-        templateVars.ts = moment(results).format('MMMM Do YY');
+
+        const allTimes = [];
+        for(let i = 0; i < results.length; i++) {
+          allTimes.push(results[i].start_time);
+        }
+        templateVars.ts = allTimes;
+        console.log(templateVars);
         res.render('event', templateVars);
       });
     })
-
-
   });
 
   // ---------- POST
   router.post('/create', (req, res) => {
-    //pass form data
-    //render to event page
-    console.log(req.body);
     let title = req.body.title;
     let location = req.body.location;
     let desc = req.body.description;
@@ -65,37 +66,22 @@ module.exports = (knex) => {
     let dateObj = dateFormat(date,
       "fullDate");
     let numDates = 0;
-    //rlet dates = [];
     let dateValues = calculateDates(req.body);;
-    // let obj = req.body;
-    // for(let date in obj) {
-    //     if(/^date/.test(obj))
-    //       dates.push(date = {});
-    // }
-    // console.log(dates);
     let dates = "[{";
     for(var x=0; x<dateValues; x++) {
       dates+="date"+String(x)+":";
-      //for(var y=0; y<dateValues[1]; y++){
-          //for the time values
-          var tempnew = dateFormat(req.body['date'+String(x)], 'fullDate');
-          var temp = req.body['time'+ String(x)];
-          tempnew=tempnew +":"+temp;
-          console.log(temp);
-            dates+="{ time"+String(x)+":["+String(tempnew)+"],";
-      //}
-        dates+="},{";
+      var tempnew = dateFormat(req.body['date'+String(x)], 'fullDate');
+      var temp = req.body['time'+ String(x)];
+      tempnew=tempnew +":"+temp;
+      dates+="{ time"+String(x)+":["+String(tempnew)+"],";
+      dates+="},{";
     }
     dates+="}]";
     let newdates = dates.replace(/],}/g, ']}');
     // dates.repalce('')
     console.log(newdates);
     console.log(typeof dates);
-    // dateObj: {
-    //   time0: req.body.time0[0]+":"+req.body.time0[1]
-    //   }
-    // }]
-    // console.log(dates);
+
     res.send(req.body);
   });
   // ---------- UPDATE
@@ -107,22 +93,29 @@ module.exports = (knex) => {
   // this deletes a users timeslots
   router.delete('/event/:id/delete' , (req, res) => {
   });
-  // ---------- TESTING
-  router.get('/testing', (req,res) => {
-    let eventUrl = '5a74e200-c1d2-4daf-81d2-f886f128c9be';
-    queries.getEventInfo('5a74e200-c1d2-4daf-81d2-f886f128c9be')
-    .then(results => {
-      res.send(results);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  });
-  router.post('/create', (req, res) => {
-    const dates = req.body.dates;
-    console.log(dates);
-    // res.send('google.com');
-    res.json({url: 'google.com'});
+
+
+  // router.post('/create', (req, res) => {
+  //   const dates = req.body.dates;
+  //   console.log(dates);
+  //   // res.send('google.com');
+  //   res.json({url: 'google.com'});
+  // });
+
+  router.post('/event/:id', (req, res) => {
+    let name = req.body.guest_name;
+    console.log('name', name);
+    let url = req.params.id;
+    console.log('url', url);
+    let timeslot = ['2017-02-03 14:00:00+00'];
+
+// 81b675b0-0357-4422-b861-b245d463cfaf EVENT 9 url
+
+    // res.send(req.body);
+    // queries.getParticipantsForEvent();
+    dbInsert.createParticipant(name, url, timeslot);
+
+    res.redirect("/event/81b675b0-0357-4422-b861-b245d463cfaf");
   });
   return router;
 }

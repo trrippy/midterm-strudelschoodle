@@ -34,7 +34,8 @@ module.exports = {
       .select('start_time')
       .where('unique_url', '=', uuid)
       .then ((results) => {
-        return results[0].start_time;
+        console.log('resuuuuuuult: ', results);
+        return results;
     })
     .catch((err) => {
       console.log(err);
