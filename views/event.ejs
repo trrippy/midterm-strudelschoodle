@@ -69,7 +69,7 @@
         <tbody>
 
           <!-- Making a row for every user -->
-          <tr>
+          <tr class='table-danger'>
           <!-- User Name -->
           <% for (user in users) { %>
             <td>
@@ -77,8 +77,19 @@
                 <%- users[user].name %>
               </span>
             </td>
+
+              <!-- Compares boolean between user availabilities and timeslots -->
               <% for(let i = 0; i < ts.length; i++) { %>
-              <td class='text-center' >&nbsb</td>
+                <!-- if the user availibility is true, display green, else red -->
+                <% if (users[user].availability[i]) { %>
+                <td class='text-center bg-success'>
+                  <%- users[user].availability[i] %>
+                </td>
+                <% } else { %>
+                  <td class='text-center bg-danger'>
+                  <%- users[user].availability[i] %>
+                  </td>
+                <% } %>
               <% } %>
           </tr>
           <% } %>
@@ -102,7 +113,7 @@
         </button>
       </div>
       </form>
-
+<!--
 
         <thead>
           <tr>
@@ -145,7 +156,7 @@
             <td><input type='checkbox' name='optionB'></td>
             <td><input type='checkbox' name='optionC'></td>
           </tr>
-        </tbody>
+        </tbody> -->
       </table>
       </div>
     </div>

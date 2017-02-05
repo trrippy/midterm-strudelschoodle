@@ -38,11 +38,13 @@ module.exports = (knex) => {
       title: 'party',
       description: 'lets go yall',
       url: '81b675b0-0357-4422-b861-b245d463cfaf',
-      ts: ['2017-02-03T14:30:00','2017-02-16T15:00', '2017-02-16T16:00'],
+      ts: ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00'],
       users: {
         'Dustin': {
           name: 'Dustin',
           email: 'd@email.com',
+          // This availability must be in the SAME order as the timeslots
+          // AKA if availability[0] is true, Dustin can make it for the ts[0] timeslot.
           availability: [false, true, false]
         },
         'Wes': {

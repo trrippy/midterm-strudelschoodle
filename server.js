@@ -47,7 +47,7 @@ app.use("/", usersRoutes(knex));
 const title = 'party';
 const loc = 'hey';
 const desc = 'lets go yall';
-const arrayOfTimes = ['2017-02-03T14:00:00+00:00','2017-02-16T00:00']
+const arrayOfTimes = ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00']
 // dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
 const partName = 'Sadirina';
