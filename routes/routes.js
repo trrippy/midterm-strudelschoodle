@@ -50,7 +50,6 @@ module.exports = (knex) => {
           allTimes.push(results[i].start_time);
         }
         templateVars.ts = allTimes;
-        console.log(templateVars);
         res.render('event', templateVars);
       });
     })

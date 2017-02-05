@@ -27,6 +27,8 @@
 
 .timepicker {
   float: none;
+  margin-right: $indent;
+  width: 15%;
 }
 
 .flatpickr1 {
@@ -39,6 +41,39 @@
 
 #flatpickr-dates {
   position: absolute;
-  top: 40px;
   right: 0;
+  top: 78px;
 }
+
+.dates-title {
+  position: absolute;
+  right: 0;
+  top: 34px;
+}
+
+.time_for_date {
+  border: solid 1px #dedede;
+  padding: $indent;
+  margin-bottom: $indent;
+}
+
+.chosen-day {
+  display: block;
+  font-size: 17px;
+  margin-bottom: $indent;
+}
+
+.add-time {
+  display: block;
+  padding-top: $indent;
+}
+
+
+
+
+
+
+
+
+
+

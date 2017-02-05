@@ -34,7 +34,7 @@
 }
 
 .step.nav-tabs {
-  background: url(../images/line.png) left center no-repeat;
+  background: url(../images/line.png) left center repeat-x;
   border: 0;
   padding: 0;
 }
@@ -79,6 +79,8 @@
 
 .timepicker {
   float: none;
+  margin-right: 10px;
+  width: 15%;
 }
 
 .flatpickr1 {
@@ -91,8 +93,31 @@
 
 #flatpickr-dates {
   position: absolute;
-  top: 40px;
   right: 0;
+  top: 78px;
+}
+
+.dates-title {
+  position: absolute;
+  right: 0;
+  top: 34px;
+}
+
+.time_for_date {
+  border: solid 1px #dedede;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.chosen-day {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.add-time {
+  display: block;
+  padding-top: 10px;
 }
 
 body {

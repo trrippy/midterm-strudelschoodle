@@ -3,6 +3,30 @@ $(() => {
   let dates = [];
   let times = {};
 
+  $('#step1 .alert').hide();
+
+  function createFlatPickr(className, date) {
+    flatpickr(className, {
+      defaultDate: date,
+      noCalendar: true,
+      enableTime: true,
+      altFormat: "F j, Y h:i K"
+    });
+  }
+
+  function createFlatPickrElement(container, date, index, count) {
+    $(container).before(`<input type="text" name="time${index}" value='' class='timepicker timepicker${index} timepicker-time added-time${count}'>`);
+
+    createFlatPickr(".timepicker" + index + ".added-time" + count, date);
+  }
+
+  function nextTab(elem) {
+      $(elem).next().find('a[data-toggle="tab"]').click();
+  }
+  function prevTab(elem) {
+      $(elem).prev().find('a[data-toggle="tab"]').click();
+  }
+
   // Calendar on step 2
   flatpickr(".flatpickr1", {
     inline: true,
@@ -18,7 +42,6 @@ $(() => {
     }
   });
 
-  //
   $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
     var $target = $(e.target);
     if ($target.parent().hasClass('disabled')) {
@@ -38,7 +61,7 @@ $(() => {
 
         const $timeForms = `
           <div class='time_for_date time_for_date${index}'>
-              <span class="tweet-name">${formatDate}</span>
+              <span class="chosen-day">${formatDate}</span>
               <input type="hidden" name='date${index}' value='${date}'>
               <a href='#' class='add-time'>add time</a>
           </div>
@@ -87,7 +110,6 @@ $(() => {
         });
 
         times[date_text] = timesArr;
-        // console.log('times object ', times);
       });
     }
   });
@@ -96,9 +118,20 @@ $(() => {
   $(".next").click(function(e) {
     e.preventDefault();
 
-    var $active = $('.container .steps-list .active');
+    let $active = $('.container .steps-list .active');
     $active.next().removeClass('disabled');
     nextTab($active);
+
+    // Validation
+    const $error = $('#step1 .alert');
+
+    if($('.form-block #title').val() == '' || $('.form-block #location').val() == '' || $('.form-block #description').val() == '' || $('.form-block #name').val() == '' || $('.form-block #email').val() == '') {
+      $error.text('Please fill out the form');
+      $error.show();
+
+      let $active = $('.container .steps-list .active');
+      prevTab($active);
+    }
 
     // console.log("1")
 
@@ -114,27 +147,5 @@ $(() => {
     var $active = $('.container .steps-list .active');
     prevTab($active);
   });
-
-  function createFlatPickr(className, date) {
-    flatpickr(className, {
-      defaultDate: date,
-      noCalendar: true,
-      enableTime: true,
-      altFormat: "F j, Y h:i K"
-    });
-  }
-
-  function createFlatPickrElement(container, date, index, count) {
-    $(container).before(`<input type="text" name="time${index}" value='' class='timepicker timepicker${index} timepicker-time added-time${count}'>`);
-
-    createFlatPickr(".timepicker" + index + ".added-time" + count, date);
-  }
-
-  function nextTab(elem) {
-      $(elem).next().find('a[data-toggle="tab"]').click();
-  }
-  function prevTab(elem) {
-      $(elem).prev().find('a[data-toggle="tab"]').click();
-  }
 
 });
