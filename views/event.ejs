@@ -13,18 +13,10 @@
     <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='/scripts/app.js'></script>
     <script type='text/javascript' src='/scripts/validate.js'></script>
-    <style>
-     {
-        border: .5px solid red;
-      }
-    </style>
-
   </head>
-
-
   <body>
     <% include partials/_header %>
-
+    <!-- for loop for event details -->
     <main class='container'>
       <div class='row'>
         <div class='col-md-2'>&nbsp;</div>
@@ -32,18 +24,25 @@
           <div class='row'>
             <div class='col-md-4'>
               <h4>Title</h4>
+              <p class='title'>Event Title Here</p>
               <h4>Location</h4>
+              <p class='location'>123 God Ave. Vancouver, BC</p>
               <h4>Organizer</h4>
+              <div class='org-box'>
+                <p class='org-name'>John Smith</p>
+                <span class='glyphicon glyphicon-envelope'></span>
+              </div>
             </div>
             <div class='col-md-8'>
-              <h4>Event URL:</h4>
+              <h4>Event URL</h4>
+              <a href="#">http://event/142k2-2m34m-2m40x-123n5-2m2s0</a>
               <h4>Description</h4>
               <p>What is having at this event? Details will show up here. What to bring? Parking? Details! Details! Details! Details! Details! Details! </p>
             </div>
           </div>
           <div class='row'>
             <div class='col-md-12'>
-            <table class="table table-striped">
+            <table class="table">
               <thead>
                 <tr>
                   <th>Participants</th>
@@ -53,30 +52,39 @@
                 </tr>
               </thead>
               <tbody>
+              <!-- for loop for date and times -->
                 <tr>
-                  <th width="200px">Guest1</th>
+                  <th>Guest1<span class='glyphicon glyphicon-envelope'></span><button type="button" class='btn btn-primary btn-xs glyphicon glyphicon-trash'></th>
                   <td class='success'>Time1</td>
                   <td class='danger'>Time2</td>
                   <td class='danger'>Time3</td>
                 </tr>
                 <tr>
-                  <th>Guest2</th>
+                  <th>Guest2<span class='glyphicon glyphicon-envelope'></span><button class='btn btn-primary btn-xs glyphicon glyphicon-trash'></span></th>
                   <td class='danger'>Time1</td>
                   <td class='success'>Time2</td>
                   <td class='danger'>Time3</td>
                 </tr>
                 <tr>
-                  <th>Guest3</th>
+                  <th>Guest3<span class='glyphicon glyphicon-envelope'></span><button class='btn btn-primary btn-xs glyphicon glyphicon-trash'</th>
                   <td class='danger'>Time1</td>
                   <td class='danger'>Time2</td>
                   <td class='success'>Time3</td>
                 </tr>
-                <tr>
-                  <th><input type='text' id='guest-name' name='guest-name' placeholder='Your name'></th>
-                  <td><input type='checkbox' name='optionA'></td>
-                  <td><input type='checkbox' name='optionB'></td>
-                  <td><input type='checkbox' name='optionC'></td>
-                </tr>
+                <form method='POST' action='/create/update'>
+                  <tr>
+                    <th>
+                      <div class="name-email">
+                        <input type='text' id='guest-name' name='guest-name' placeholder='Your name'><br>
+                        <input type='email' id='guest-email' name='guest-email' placeholder='Your email'>
+                      <div>
+                      <button type="submit" class='btn btn-primary btn-xs glyphicon glyphicon-plus'></button>
+                    </th>
+                    <td><input type='checkbox' name='optionA'></td>
+                    <td><input type='checkbox' name='optionB'></td>
+                    <td><input type='checkbox' name='optionC'></td>
+                  </tr>
+                </form>
               </tbody>
             </table>
             </div>
