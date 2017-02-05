@@ -52,11 +52,9 @@ module.exports = (knex) => {
           email: 'w@email.com',
           availability: [false, false, false]
         }
-        templateVars.ts = allTimes;
-        res.render('event', templateVars);
-      };
+      }
     }
-    // res.render('event', templateVars);
+    res.render('event', templateVars);
 
 
     // const eventInfo = queries.getEventInfo(req.params.id)
@@ -79,6 +77,7 @@ module.exports = (knex) => {
     //     res.render('event', templateVars);
     //   });
     // })
+  // });
   });
 
   // ---------- POST

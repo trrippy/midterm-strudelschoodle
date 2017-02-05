@@ -4,6 +4,9 @@ $(() => {
   let times = {};
 
   $('#step1 .alert').hide();
+  $('#step2 .alert').hide();
+  $('#step3 .alert').hide();
+  // $('.form-block .alert').hide();
 
   function createFlatPickr(className, date) {
     flatpickr(className, {
@@ -27,7 +30,7 @@ $(() => {
       $(elem).prev().find('a[data-toggle="tab"]').click();
   }
 
-  // Calendar on step 2
+  // Calendar's invocation on step 2
   flatpickr(".flatpickr1", {
     inline: true,
     mode: "multiple",
@@ -51,7 +54,6 @@ $(() => {
     if($target.attr("id") == "lnk-step3") {
       $('.time-options').empty();
 
-      // TODO: sort the dates if that seems necessary
       dates.sort().forEach(function(date, index) {
         let formatDate = moment(date).format('MMMM Do YYYY');
         let count = 0;
@@ -78,6 +80,7 @@ $(() => {
           count++;
         } else {
           timesForDate.forEach(function(timeForDate) {
+            // Example:
             // timeForDate 02:15
             // hoursAndMinutes = ["02", "15"]
             const hoursAndMinutes = timeForDate.split(":");
@@ -95,7 +98,7 @@ $(() => {
   });
 
   $('a[data-toggle="tab"]').on('hide.bs.tab', function(e) {
-    var $target = $(e.target);
+    let $target = $(e.target);
     if ($target.parent().hasClass('disabled')) {
       return false;
     }
@@ -122,17 +125,28 @@ $(() => {
     $active.next().removeClass('disabled');
     nextTab($active);
 
-    // Validation
+    // Form Validation
     const $error = $('#step1 .alert');
+    const $error1 = $('#step2 .alert');
+    const $error2 = $('#step3 .alert');
 
-    if($('.form-block #title').val() == '' || $('.form-block #location').val() == '' || $('.form-block #description').val() == '' || $('.form-block #name').val() == '' || $('.form-block #email').val() == '') {
+      // Step 1 validation
+    if($('.form-block.active').attr("id") == "step2" && $('.form-block #title').val() == '' || $('.form-block #description').val() == '' || $('.form-block #name').val() == '' || $('.form-block #email').val() == '') {
       $error.text('Please fill out the form');
       $error.show();
 
       let $active = $('.container .steps-list .active');
       prevTab($active);
-    }
+    } else {$error.hide()}
 
+      // Step 2 validation
+    if($('.form-block.active').attr("id") == "step3" && $('.form-block .flatpickr1').val() == '') {
+      $error1.text('Please choose dates');
+      $error1.show();
+
+      let $active = $('.container .steps-list .active');
+      prevTab($active);
+    } else {$error1.hide()}
     // console.log("1")
 
     // var $active = $('.container .steps-list .active');

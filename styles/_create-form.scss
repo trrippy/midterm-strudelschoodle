@@ -4,15 +4,28 @@
   margin-bottom: $indent;
 
   .step-title {
-    margin-bottom: $indent*2;
+    /*margin-bottom: $indent*2;*/
   }
 
   label {
     font-size: 16px;
     font-weight: 400;
   }
-}
 
+  .form-group {
+    margin-bottom: 0;
+    padding-top: $indent;
+  }
+
+  .form-group.calendar-container {
+    margin-bottom: 0;
+    padding-top: 1px;
+  }
+
+  .flatpickr-calendar.inline {
+    position: static;
+  }
+}
 
 .flatpickr-input {
   float: right;
@@ -20,14 +33,9 @@
   width: 200px;
 }
 
-.form-block .flatpickr-calendar.inline {
-  margin-bottom: $indent*2;
-  position: static;
-}
-
 .timepicker {
   float: none;
-  margin-right: $indent;
+  margin: 0 $indent $indent 0;
   width: 15%;
 }
 
@@ -35,24 +43,26 @@
   opacity: 0;
 }
 
-#step2 {
+.calendar-container {
   position: relative;
-}
-
-#flatpickr-dates {
-  position: absolute;
-  right: 0;
-  top: 78px;
 }
 
 .dates-title {
   position: absolute;
   right: 0;
-  top: 34px;
+  top: 0;
+  margin: 0;
+}
+
+#flatpickr-dates {
+  position: absolute;
+  right: 0;
+  top: 35px;
 }
 
 .time_for_date {
   border: solid 1px #dedede;
+  border-radius: 3px;
   padding: $indent;
   margin-bottom: $indent;
 }
@@ -65,15 +75,27 @@
 
 .add-time {
   display: block;
-  padding-top: $indent;
 }
 
+.pag {
+  padding-top: $indent*2;
 
+  .btn {
+    margin: 0 $indent 0 0;
+  }
+}
 
+.form-group .required {
+  font-size: 15px;
+  right: -4px;
+  top: -4px;
+}
 
+.note-required {
+  float: right;
+  font-size: 13px;
+}
 
-
-
-
-
-
+.calendar-container .flatpickr-calendar.arrowTop:before {
+  border-bottom-color: #fff;
+}

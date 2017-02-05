@@ -5,7 +5,6 @@
 }
 
 .step {
-  /*background: url(../images/line.png) left center repeat;*/
   display: flex;
   justify-content: space-between;
 
@@ -16,6 +15,14 @@
       color: #337ab7;
     }
   }
+}
+
+#lnk-step1 .glyphicon-list-alt {
+  left: -1px;
+}
+
+#lnk-step2 .glyphicon-calendar {
+  right: -1px;
 }
 
 .step-icon {

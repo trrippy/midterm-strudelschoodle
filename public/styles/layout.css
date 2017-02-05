@@ -3,7 +3,6 @@
 }
 
 .step {
-  /*background: url(../images/line.png) left center repeat;*/
   display: flex;
   justify-content: space-between;
 }
@@ -14,6 +13,14 @@
 
 .step .active .step-icon .glyphicon {
   color: #337ab7;
+}
+
+#lnk-step1 .glyphicon-list-alt {
+  left: -1px;
+}
+
+#lnk-step2 .glyphicon-calendar {
+  right: -1px;
 }
 
 .step-icon {
@@ -58,12 +65,26 @@
 }
 
 .form-block .step-title {
-  margin-bottom: 20px;
+  /*margin-bottom: $indent*2;*/
 }
 
 .form-block label {
   font-size: 16px;
   font-weight: 400;
+}
+
+.form-block .form-group {
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
+.form-block .form-group.calendar-container {
+  margin-bottom: 0;
+  padding-top: 1px;
+}
+
+.form-block .flatpickr-calendar.inline {
+  position: static;
 }
 
 .flatpickr-input {
@@ -72,14 +93,9 @@
   width: 200px;
 }
 
-.form-block .flatpickr-calendar.inline {
-  margin-bottom: 20px;
-  position: static;
-}
-
 .timepicker {
   float: none;
-  margin-right: 10px;
+  margin: 0 10px 10px 0;
   width: 15%;
 }
 
@@ -87,24 +103,26 @@
   opacity: 0;
 }
 
-#step2 {
+.calendar-container {
   position: relative;
-}
-
-#flatpickr-dates {
-  position: absolute;
-  right: 0;
-  top: 78px;
 }
 
 .dates-title {
   position: absolute;
   right: 0;
-  top: 34px;
+  top: 0;
+  margin: 0;
+}
+
+#flatpickr-dates {
+  position: absolute;
+  right: 0;
+  top: 35px;
 }
 
 .time_for_date {
   border: solid 1px #dedede;
+  border-radius: 3px;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -117,7 +135,29 @@
 
 .add-time {
   display: block;
-  padding-top: 10px;
+}
+
+.pag {
+  padding-top: 20px;
+}
+
+.pag .btn {
+  margin: 0 10px 0 0;
+}
+
+.form-group .required {
+  font-size: 15px;
+  right: -4px;
+  top: -4px;
+}
+
+.note-required {
+  float: right;
+  font-size: 13px;
+}
+
+.calendar-container .flatpickr-calendar.arrowTop:before {
+  border-bottom-color: #fff;
 }
 
 .glyphicon-trash {
@@ -161,4 +201,8 @@ body h1 {
 .navbar .navbar-brand {
   height: auto;
   padding: 10px 37px;
+}
+
+.main-page-title {
+  margin-bottom: 40px;
 }
