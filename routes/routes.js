@@ -61,7 +61,7 @@ module.exports = (knex) => {
     //     }
     //   ]
     // }
-    // res.render('event', templateVars);
+
 
     // adding event into to templateVars
     const eventInfo = queries.getEventInfo(req.params.id)
@@ -118,6 +118,7 @@ module.exports = (knex) => {
               console.log('lool', results.length);
               if (index === loops - 1){
                 templateVars.users = userArr;
+                res.render('event', templateVars);
               }
               // if ()
               // templateVars.users = userInsert;
