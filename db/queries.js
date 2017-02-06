@@ -54,13 +54,17 @@ module.exports = {
       console.log(err);
     })
   },
-  // Rreturns timeslots for
-  // getTimeslotsForParticipants: (uuid) => {
-  //   return knex('timeslots')
-  //   .join('events', 'timeslots.event_id', '=', 'events.id')
-  //   .select('start_time')
-  //   .where('unique_url', '=', uuid)
-  //   .orderBy('start_time');
-  // }
-  // TODO: a list
+
+  //Returns an array of booleans given participantId and EventId ordered by time
+  getAvailabilitiesForParticipant: (pId, eventId) => {
+    return knex('availability')
+    .join('timeslots', 'availability.timeslot_id', '=', 'timeslots.id')
+    .select('is_available')
+    .where('participant_id', '=', pId)
+    .andWhere('event_id', '=', eventId)
+    .orderBy('start_time')
+    .then(results => {
+      return results;
+    })
+  }
 }

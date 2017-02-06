@@ -46,7 +46,7 @@ module.exports = (knex) => {
     //   description: 'lets go yall',
     //   url: '81b675b0-0357-4422-b861-b245d463cfaf',
     //   ts: ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00'],
-    //   users: {
+    //   users: [
     //     'Dustin': {
     //       name: 'Dustin',
     //       email: 'd@email.com',
@@ -59,7 +59,7 @@ module.exports = (knex) => {
     //       email: 'w@email.com',
     //       availability: [false, false, false]
     //     }
-    //   }
+    //   ]
     // }
     // res.render('event', templateVars);
 
@@ -70,6 +70,7 @@ module.exports = (knex) => {
       templateVars.title = results.title;
       templateVars.description = results.description;
       templateVars.url = results.unique_url;
+      templateVars.eventId = results.id;
     })
     .then(results => {
       const timeSlot = queries.getTimeslotsForEvent(req.params.id)
@@ -79,11 +80,53 @@ module.exports = (knex) => {
           allTimes.push(results[i].start_time);
         }
         templateVars.ts = allTimes;
-        console.log('final templateVars sent to server', templateVars);
+        // console.log('final templateVars sent to server', templateVars);
         // res.render('event', templateVars);
       })
       .then(results => {
+        // TODO search participants where event = event url
+        // TODO search for that participants availability, sort it, and put it into an arraymake it into an array
+        let users = {};
+        queries.getParticipantsForEvent(req.params.id)
+        .then(results => {
+          let userArr = []
+          results.forEach((item, index) => {
+            let loops = results.length;
+            let pName = item.name;
+            let pDetails = {
+              name: pName
+            };
 
+            queries.getAvailabilitiesForParticipant(item.id, templateVars.eventId)
+            .then(results => {
+
+              let pArr = [];
+              results.forEach((item, index) => {
+                pArr.push(item.is_available)
+                  users[pName] = pDetails
+              })
+              pDetails.availability = pArr;
+              // console.log(pName);
+              // console.log(pDetails);
+              // let userInsert = {
+              //   [pName]:pDetails
+              // }
+              let userObj = {}
+              userObj[pName] = pDetails;
+              console.log(userObj);
+              userArr.push(userObj);
+              console.log('lool', results.length);
+              if (index === loops - 1){
+                templateVars.users = userArr;
+              }
+              // if ()
+              // templateVars.users = userInsert;
+              // console.log(templateVars);
+              // console.log('I WANT THIS', userInsert);
+              // console.log('users', users);
+            })
+          })
+        })
       })
     })
   });

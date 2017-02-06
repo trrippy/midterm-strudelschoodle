@@ -47,14 +47,14 @@ app.use("/", usersRoutes(knex));
 const title = 'party';
 const loc = 'hey';
 const desc = 'lets go yall';
-const arrayOfTimes = ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00']
+const arrayOfTimes = ['2017-02-05T14:30:00','2017-02-05T15:30:00', '2017-02-05T18:00:00']
 // dbInsert.createEvent(title, loc, desc, arrayOfTimes);
 
-const partName = 'Wes';
-const partEmail = 'wes@email.com';
-const eventUuid = 'f9ecd550-e2c7-4792-875d-ea3e96ca7718'; // event 20
-const arrayOfTimesAvail = ['2017-02-05T15:00:00'] // available for 5, but not 7
-dbInsert.createParticipant(partName, eventUuid, arrayOfTimesAvail)
+const partName = 'Dustin';
+const partEmail = 'dust@email.com';
+const eventUuid = 'ba901d0d-5d18-42ab-bbed-5b8c7ae75da0'; // event 20
+const arrayOfTimesAvail = ['2017-02-05T15:30:00'] // available for 5, but not 7
+// dbInsert.createParticipant(partName, eventUuid, arrayOfTimesAvail)
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

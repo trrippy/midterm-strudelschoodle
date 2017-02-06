@@ -73,7 +73,6 @@ module.exports = {
             arrOfEventTimesId.push(item.id);
           })
           arrOfEventTimes.forEach((item, index) => {
-
             knex
             .insert([{
               participant_id: participantId,
@@ -90,7 +89,12 @@ module.exports = {
             let available = false;
             let index = arrOfEventTimes.indexOf(item);
             let timeslotId = index;
+            // console.log('arrOfEventTimes', arrOfEventTimes);
+            // console.log('each item', item);
+            // console.log('available', available);
+            // console.log('index', index)
             if (index >= 0) {
+              console.log('in if');
               available = true;
               knex('availability')
               .where({
