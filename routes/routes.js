@@ -130,6 +130,7 @@ module.exports = (knex) => {
         })
       })
     })
+
   });
 
   // ---------- POST
@@ -164,6 +165,10 @@ module.exports = (knex) => {
       dates+="},";
     }
     dates+="}]";
+
+    let newdates = dates.replace(/],}/g, ']}');
+    // dates.repalce('')
+
     dates = dates.replace(/],}/g, ']}');
     dates = dates.replace(/,{}/g, '');
     dates = dates.replace(/]}]/g, ']}');

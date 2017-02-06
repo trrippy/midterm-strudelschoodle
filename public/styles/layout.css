@@ -3,7 +3,6 @@
 }
 
 .step {
-  /*background: url(../images/line.png) left center repeat;*/
   display: flex;
   justify-content: space-between;
 }
@@ -14,6 +13,21 @@
 
 .step .active .step-icon .glyphicon {
   color: #337ab7;
+}
+
+#lnk-step1,
+#lnk-step2,
+#lnk-step3 {
+  cursor: default;
+  pointer-events: none;
+}
+
+#lnk-step1 .glyphicon-list-alt {
+  left: -1px;
+}
+
+#lnk-step2 .glyphicon-calendar {
+  right: -1px;
 }
 
 .step-icon {
@@ -34,7 +48,7 @@
 }
 
 .step.nav-tabs {
-  background: url(../images/line.png) left center no-repeat;
+  background: url(../images/line.png) left center repeat-x;
   border: 0;
   padding: 0;
 }
@@ -58,12 +72,26 @@
 }
 
 .form-block .step-title {
-  margin-bottom: 20px;
+  /*margin-bottom: $indent*2;*/
 }
 
 .form-block label {
   font-size: 16px;
   font-weight: 400;
+}
+
+.form-block .form-group {
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+
+.form-block .form-group.calendar-container {
+  margin-bottom: 0;
+  padding-top: 1px;
+}
+
+.form-block .flatpickr-calendar.inline {
+  position: static;
 }
 
 .flatpickr-input {
@@ -72,13 +100,71 @@
   width: 200px;
 }
 
-.form-block .flatpickr-calendar.inline {
-  margin-bottom: 20px;
-  position: static;
-}
-
 .timepicker {
   float: none;
+  margin: 0 10px 10px 0;
+  width: 15%;
+}
+
+.flatpickr1 {
+  opacity: 0;
+}
+
+.calendar-container {
+  position: relative;
+}
+
+.dates-title {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 0;
+}
+
+#flatpickr-dates {
+  position: absolute;
+  right: 0;
+  top: 35px;
+}
+
+.time_for_date {
+  border: solid 1px #dedede;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.chosen-day {
+  display: block;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.add-time {
+  display: block;
+}
+
+.pag {
+  padding-top: 20px;
+}
+
+.pag .btn {
+  margin: 0 10px 0 0;
+}
+
+.form-group .required {
+  font-size: 15px;
+  right: -4px;
+  top: -4px;
+}
+
+.note-required {
+  float: right;
+  font-size: 13px;
+}
+
+.calendar-container .flatpickr-calendar.arrowTop:before {
+  border-bottom-color: #fff;
 }
 
 .glyphicon-trash {
@@ -111,6 +197,39 @@
   height: 50px;
 }
 
+/* Event info table */
+.event-table-wrapper {
+  background-color: #f9f9f9;
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  /*width: 62%;*/
+}
+
+.event-table-wrapper .event-table {
+  border: 0;
+}
+
+.event-table-wrapper .event-name {
+  border: 0;
+}
+
+.event-table-wrapper .event-data {
+  border: 0;
+  font-size: 1.2em;
+}
+
+.event-table-wrapper .event-title {
+  margin: 0 0 5px;
+  padding: 0;
+}
+
+.btn-add .glyphicon-plus {
+  height: auto;
+  padding-right: 6px;
+  width: auto;
+}
+
 body {
   background-color: #EEE;
 }
@@ -122,4 +241,8 @@ body h1 {
 .navbar .navbar-brand {
   height: auto;
   padding: 10px 37px;
+}
+
+.main-page-title {
+  margin-bottom: 40px;
 }
