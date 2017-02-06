@@ -175,7 +175,7 @@ module.exports = (knex) => {
             res.redirect('/event/'+uniqueUrl);
           })
         })
-      }, 500);
+    })
     }
     delayForDb();
 
