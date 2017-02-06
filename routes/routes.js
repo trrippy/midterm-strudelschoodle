@@ -119,6 +119,7 @@ module.exports = (knex) => {
               if (index === loops - 1){
                 templateVars.users = userArr;
                 res.render('event', templateVars);
+                // res.send(templateVars);
               }
               // if ()
               // templateVars.users = userInsert;
