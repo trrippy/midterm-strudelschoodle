@@ -106,5 +106,15 @@ $(() => {
   function prevTab(elem) {
       $(elem).prev().find('a[data-toggle="tab"]').click();
   }
+  $(".slide-down").hide(function() {
+    $( 'input.event-name.form-control' ).focus(function () {
+      console.log("select");
+      $( ".slide-down" ).slideDown();
+  // } else {
+  //   $( "div" ).hide();
+  // }
+    });
+  });
+
 
 });

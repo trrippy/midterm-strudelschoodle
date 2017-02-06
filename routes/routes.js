@@ -37,7 +37,7 @@ module.exports = (knex) => {
       location: 'hey',
       title: 'party',
       description: 'lets go yall',
-      url: '81b675b0-0357-4422-b861-b245d463cfaf',
+      url: req.params.id,//'81b675b0-0357-4422-b861-b245d463cfaf',
       ts: ['2017-02-03T14:30:00','2017-02-03T15:30:00', '2017-02-03T18:00:00'],
       users: {
         'Dustin': {
@@ -139,21 +139,22 @@ module.exports = (knex) => {
   //   // res.send('google.com');
   //   res.json({url: 'google.com'});
   // });
+  //createParticipant: (participantName, eventUrl, arrOfTimeslots) => {
 
   router.post('/event/:id', (req, res) => {
     let name = req.body.guest_name;
     console.log('name', name);
     let url = req.params.id;
     console.log('url', url);
-    let timeslot = ['2017-02-03 14:00:00+00'];
+    let timeslot = req.body.guest_time;//['2017-02-03 14:00:00+00'];
+
 
 // 81b675b0-0357-4422-b861-b245d463cfaf EVENT 9 url
 
     // res.send(req.body);
-    // queries.getParticipantsForEvent();
+    console.log(name, url, timeslot);
     dbInsert.createParticipant(name, url, timeslot);
-
-    res.redirect("/event/81b675b0-0357-4422-b861-b245d463cfaf");
+    res.redirect(`/event/${url}`);
   });
   return router;
 }
