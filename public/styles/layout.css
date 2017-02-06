@@ -203,7 +203,7 @@
   border: solid 1px #ccc;
   border-radius: 3px;
   margin-bottom: 20px;
-  width: 62%;
+  /*width: 62%;*/
 }
 
 .event-table-wrapper .event-table {
