@@ -52,7 +52,7 @@ const arrayOfTimes = ['2017-02-05T14:30:00','2017-02-05T15:30:00', '2017-02-05T1
 
 const partName = 'Dustin';
 const partEmail = 'dust@email.com';
-const eventUuid = 'ba901d0d-5d18-42ab-bbed-5b8c7ae75da0'; // event 20
+const eventUuid = '6b6f43f8-37f7-4196-987d-d3d90c991f0d'; // event 20
 const arrayOfTimesAvail = ['2017-02-05T15:30:00'] // available for 5, but not 7
 // dbInsert.createParticipant(partName, eventUuid, arrayOfTimesAvail)
 

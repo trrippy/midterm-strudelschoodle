@@ -87,14 +87,15 @@ module.exports = {
         .then(results => {
           arrOfTimeslots.forEach(item => {
             let available = false;
-            let index = arrOfEventTimes.indexOf(item);
+            let index = arrOfEventTimes.indexOf(item.substring(0,19));
             let timeslotId = index;
-            // console.log('arrOfEventTimes', arrOfEventTimes);
-            // console.log('each item', item);
+            console.log('arrOfEventTimes', arrOfEventTimes);
+            console.log('each item', item.substring(0,19));
+            console.log('item is type', typeof arrOfEventTimes[0]);
             // console.log('available', available);
-            // console.log('index', index)
+            console.log('index', index)
             if (index >= 0) {
-              console.log('in if');
+              // console.log('in if');
               available = true;
               knex('availability')
               .where({
@@ -103,7 +104,7 @@ module.exports = {
               })
               .update('is_available', true)
               .then(results => {
-                return results;
+                console.log(results);
               })
             }
           })

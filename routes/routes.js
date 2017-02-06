@@ -32,7 +32,6 @@ module.exports = (knex) => {
   });
 
   router.get('/event/:id', (req, res) => {
-    console.log('event url', req.params.id);
     let templateVars = {
       moment: moment,
       url: req.params.id
@@ -89,12 +88,16 @@ module.exports = (knex) => {
               // }
               let userObj = {}
               userObj[pName] = pDetails;
-              console.log(userObj);
               userArr.push(userObj);
-              console.log('lool', results.length);
               if (index === loops - 1){
                 templateVars.users = userArr;
-                res.render('event', templateVars);
+                function shortDelay() {
+                  setTimeout(function () {
+                    res.render('event', templateVars);
+                  }, 500);
+                }
+                shortDelay();
+
                 // res.send(templateVars);
               }
               // if ()
@@ -154,6 +157,8 @@ module.exports = (knex) => {
 // ------------------------------------------------------------------------------
 
     dbInsert.createEvent(title, loc, desc, arrEventTimes);
+              // createParticipant('admin', evtUrl, arrOfTimeslots);
+
     res.redirect('/');
 
   });
@@ -178,18 +183,33 @@ module.exports = (knex) => {
 
   router.post('/event/:id', (req, res) => {
     let name = req.body.guest_name;
-    console.log('name', name);
+    // console.log('name', name);
     let url = req.params.id;
-    console.log('url', url);
-    let timeslot = req.body.guest_time;//['2017-02-03 14:00:00+00'];
+    // console.log('url', url);
+    let timeslot = [];
+    // console.log(typeof req.body.guest_time === 'string');
+    if ((typeof req.body.guest_time) === 'string') {
+      timeslot.push(req.body.guest_time)
+    } else {
+      req.body.guest_time.forEach((item) => {
+        timeslot.push(item);
+      });//['2017-02-03 14:00:00+00'];
+    }
+    // console.log('name', name)
+    // console.log('url', url)
+    // console.log('timeslot', timeslot);
 
-
-// 81b675b0-0357-4422-b861-b245d463cfaf EVENT 9 url
 
     // res.send(req.body);
-    console.log(name, url, timeslot);
+    // console.log(name, url, timeslot);
+    function addDelay() {
+      setTimeout(function () {
+        res.redirect(`/event/${url}`);
+      }, 500);
+    }
+    addDelay();
     dbInsert.createParticipant(name, url, timeslot);
-    res.redirect(`/event/${url}`);
+    // res.redirect(`/event/${url}`);
   });
   return router;
 }
