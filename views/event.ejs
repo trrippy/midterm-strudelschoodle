@@ -46,7 +46,7 @@
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                   Organizer
                 </td>
-                <td class='event-data'>John Smith</td>
+                <td class='event-data'><%- organizer %></td>
               </tr>
               <tr>
                 <td class='event-name'>
@@ -121,12 +121,13 @@
 
           <form method='POST' action='/event/<%= url %>'>
           <tr>
-            <td>
+            <td style='position: relative'>
                 <input class="event-name form-control" type='text' name='guest_name' placeholder='Enter your name'>
-                <div class="slide-down">
-                  <input class="event-email form-control" type='email' name='email' placeholder='Enter your email'>
-                  <button type="submit" class='btn btn-default'>
-                    <span class='glyphicon glyphicon-plus'></span>Add Name
+                <div class="slide-down" style='position: absolute; top: 50px, width: 100%'>
+                  <!-- <input class="event-email form-control" type='email' name='email' placeholder='Enter your email'> -->
+                  <button type="submit" class='btn btn-default' width=100%>
+                    <i class='glyphicon glyphicon-plus'></i>
+                    <span>Submit</span>
                   </button>
                 </div>
             </td>
@@ -140,12 +141,6 @@
         </tbody>
       </table>
 
-
-      <div>
-        <button type="submit" class='btn btn-default btn-add'>
-          <span class='glyphicon glyphicon-plus'></span>Add Name
-        </button>
-      </div>
 
     </div>
 

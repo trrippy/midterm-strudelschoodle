@@ -47,6 +47,7 @@ module.exports = {
     .join('events', 'participants.event_id', '=', 'events.id')
     .select('participants.id', 'name', 'email')
     .where('unique_url', '=', uuid)
+    .orderBy('id')
     .then ((results) => {
       return results
     })

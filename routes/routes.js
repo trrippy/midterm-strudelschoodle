@@ -46,6 +46,7 @@ module.exports = (knex) => {
       templateVars.description = results.description;
       templateVars.url = results.unique_url;
       templateVars.eventId = results.id;
+      templateVars.organizer = results.organizer;
     })
     .then(results => {
       const timeSlot = queries.getTimeslotsForEvent(req.params.id)
@@ -118,7 +119,8 @@ module.exports = (knex) => {
 
     let title = req.body.title;
     let loc = req.body.location;
-    let desc = req.body.description
+    let desc = req.body.description;
+    let org = req.body.organizer;
     let arrEventTimes = [];
 
 // This catastrophe creates a the form and builds a JSON string which is converted into the dates object;
@@ -156,7 +158,7 @@ module.exports = (knex) => {
     dates = dates.replace(/,]}/g, ']}');
 // ------------------------------------------------------------------------------
 
-    dbInsert.createEvent(title, loc, desc, arrEventTimes);
+    dbInsert.createEvent(title, loc, desc, arrEventTimes, org);
     // this sets a delay so that after an event is created, it then properly searches through the db to get the last event id
     function delayForDb() {
       setTimeout(function () {

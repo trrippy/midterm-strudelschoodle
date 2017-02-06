@@ -8,12 +8,13 @@ const uuid        = require('./uuid');
 
 module.exports = {
   // given 1) event title, 2)location, 3) description, 4)organizer, 5)email 6)timeslots
-  createEvent: (eventTitle, loc, desc, arrOfTimeslots) => {
+  createEvent: (eventTitle, loc, desc, arrOfTimeslots, org) => {
     knex
     .insert([{
         title: eventTitle,
         location: loc,
         description: desc,
+        organizer: org,
         unique_url: uuid()
       }], 'id')
     .into('events')
@@ -86,7 +87,6 @@ module.exports = {
         })
         .then(results => {
           arrOfTimeslots.forEach(item => {
-            let available = false;
             let index = arrOfEventTimes.indexOf(item.substring(0,19));
             let timeslotId = index;
             // console.log('arrOfEventTimes', arrOfEventTimes);
@@ -95,8 +95,9 @@ module.exports = {
             // console.log('available', available);
             console.log('If this is > 0, then the check condition is working', index)
             if (index >= 0) {
-              // console.log('in if');
-              available = true;
+              console.log('This will show if index above is >= 0');
+              console.log('this is the participantId', participantId);
+              console.log('this is the timeslotId', arrOfEventTimesId[index]);
               knex('availability')
               .where({
                 participant_id: participantId,
@@ -104,7 +105,7 @@ module.exports = {
               })
               .update('is_available', true)
               .then(results => {
-                console.log(results);
+                console.log('after update');
               })
             }
           })
