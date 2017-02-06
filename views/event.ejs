@@ -119,18 +119,27 @@
           </tr>
           <% } %>
 
+          <form method='POST' action='/event/<%= url %>'>
           <tr>
             <td>
-              <input class="form-control" type='text' name='guest_name' placeholder='Enter your name'>
+                <input class="event-name form-control" type='text' name='guest_name' placeholder='Enter your name'>
+                <div class="slide-down">
+                  <input class="event-email form-control" type='email' name='email' placeholder='Enter your email'>
+                  <button type="submit" class='btn btn-default'>
+                    <span class='glyphicon glyphicon-plus'></span>Add Name
+                  </button>
+                </div>
             </td>
-            <% for(let i = 0; i < ts.length; i++) { %>
+              <% for(let i = 0; i < ts.length; i++) { %>
             <td class='text-center'>
               <input type='checkbox' name='guest_time' value='<%- moment(ts[i]).format()%>'>
             </td>
-            <% } %>
+          <% } %>
+          </form>
           </tr>
         </tbody>
       </table>
+
 
       <div>
         <button type="submit" class='btn btn-default btn-add'>

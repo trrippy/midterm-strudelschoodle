@@ -157,4 +157,31 @@ $(() => {
     prevTab($active);
   });
 
+  function createFlatPickr(className, el) {
+    flatpickr(className, {
+      defaultDate: el,
+      noCalendar: true,
+      enableTime: true,
+      altFormat: "F j, Y h:i K"
+    });
+  }
+
+
+  function nextTab(elem) {
+      $(elem).next().find('a[data-toggle="tab"]').click();
+  }
+  function prevTab(elem) {
+      $(elem).prev().find('a[data-toggle="tab"]').click();
+  }
+  $(".slide-down").hide(function() {
+    $( 'input.event-name.form-control' ).focus(function () {
+      console.log("select");
+      $( ".slide-down" ).slideDown();
+  // } else {
+  //   $( "div" ).hide();
+  // }
+    });
+  });
+
+
 });
