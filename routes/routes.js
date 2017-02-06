@@ -157,9 +157,27 @@ module.exports = (knex) => {
 // ------------------------------------------------------------------------------
 
     dbInsert.createEvent(title, loc, desc, arrEventTimes);
-              // createParticipant('admin', evtUrl, arrOfTimeslots);
+    // this sets a delay so that after an event is created, it then properly searches through the db to get the last event id
+    function delayForDb() {
+      setTimeout(function () {
+        knex('events')
+        .max('id')
+        .then(results => {
+          knex('events')
+          .select('unique_url')
+          .where('id', '=', results[0].max)
+          .then(results => {
+            let uniqueUrl = results[0].unique_url;
+            console.log('event times should be', arrEventTimes);
+            dbInsert.createParticipant('admin', uniqueUrl, arrEventTimes);
+            res.redirect('/event/'+uniqueUrl);
+          })
+        })
+      }, 500);
+    }
+    delayForDb();
 
-    res.redirect('/');
+
 
   });
   // ---------- UPDATE
@@ -183,17 +201,23 @@ module.exports = (knex) => {
 
   router.post('/event/:id', (req, res) => {
     let name = req.body.guest_name;
+    let reqTimes = req.body.guest_time;
     // console.log('name', name);
     let url = req.params.id;
     // console.log('url', url);
     let timeslot = [];
     // console.log(typeof req.body.guest_time === 'string');
-    if ((typeof req.body.guest_time) === 'string') {
-      timeslot.push(req.body.guest_time)
+    if (typeof reqTimes === 'string') {
+      timeslot.push(reqTimes)
     } else {
-      req.body.guest_time.forEach((item) => {
-        timeslot.push(item);
-      });//['2017-02-03 14:00:00+00'];
+      if (!reqTimes) {
+        // random date so it prevents it from breaking when you try to substring it
+        timeslot.push('1984-19-84T19:84:00');
+      } else {
+        reqTimes.forEach((item) => {
+          timeslot.push(item);
+        });//['2017-02-03 14:00:00+00'];
+      }
     }
     // console.log('name', name)
     // console.log('url', url)

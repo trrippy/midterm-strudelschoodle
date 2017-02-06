@@ -89,11 +89,11 @@ module.exports = {
             let available = false;
             let index = arrOfEventTimes.indexOf(item.substring(0,19));
             let timeslotId = index;
-            console.log('arrOfEventTimes', arrOfEventTimes);
-            console.log('each item', item.substring(0,19));
-            console.log('item is type', typeof arrOfEventTimes[0]);
+            // console.log('arrOfEventTimes', arrOfEventTimes);
+            // console.log('each item', item.substring(0,19));
+            // console.log('item is type', typeof arrOfEventTimes[0]);
             // console.log('available', available);
-            console.log('index', index)
+            console.log('If this is > 0, then the check condition is working', index)
             if (index >= 0) {
               // console.log('in if');
               available = true;
