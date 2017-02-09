@@ -1,7 +1,7 @@
-# Work In Progress
+# Schoodle
 *This is the midterm project for lighthouse labs, working in a group for the first time*
 
-### Option 6: Schoodle
+### Project Description
 
 [Doodle](https://doodle.com) is great for scheduling events within a group. Your job is to create a simpler, more modern version of it.
 
